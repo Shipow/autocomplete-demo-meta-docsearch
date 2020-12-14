@@ -17,7 +17,8 @@ import { AlgoliaDocsHitTemplate } from "./components/algoliaDocsLayout.tsx";
 import {
   ContentPreview,
   ContentPreviewGithub,
-  ContentPreviewDocsearch
+  ContentPreviewDocsearch,
+  DocsearchRecordContentPreview
 } from "./components/contentPreviewDocsearch";
 
 //debug console
@@ -1205,6 +1206,19 @@ const aaDemo = autocomplete({
           // DocSearch Customer Index
           // ----------------
           slugName: "docsearchCustomer",
+          onHighlight({ item }) {
+            setTimeout(() => {
+              const preview = document.querySelector("#autocomplete-preview");
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+              render(
+                <DocsearchRecordContentPreview content={item} />,
+                preview,
+                section
+              );
+            }, 100);
+          },
           getItemInputValue: ({ state }) => state.query,
           getItems({ query }) {
             return getAlgoliaHits({

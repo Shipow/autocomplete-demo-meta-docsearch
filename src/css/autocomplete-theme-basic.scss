@@ -181,30 +181,28 @@ body {
 // ----------------
 .aa-PanelLayout {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: none;
   margin-top: var(--spacing-half);
   border-radius: 3px;
   background-color:var(--background-color);
   box-shadow: var(--panel-shadow);
   text-align: left;
-  //max-height: 400px;
 
   .col-results{
-    flex-grow: 2;
+    // max-height: 400px;
     width: 50%;
     overflow-y: scroll;
-    //max-height: 400px;
     // section.aa-Source
-    // section.aa-Source
-    // section.aa-Source
+
   }
   aside.col-preview{
     //max-height: 400px;
-    overflow: hidden;
     width: 50%;
+    overflow: hidden;
     border-left: solid 1px var(--selected-color);
+
     &:empty{
-      display:none;
+      //display:none;
     }
   }
 }

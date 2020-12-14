@@ -309,3 +309,11 @@ export function ContentPreviewGithub({ content }) {
     </section>
   );
 }
+
+export function DocsearchRecordContentPreview({ content }) {
+  return (
+    <section class="animate__animated animate__fadeIn animate__faster">
+      <pre class="text-xs">{JSON.stringify(content, null, 2)}</pre>
+    </section>
+  );
+}
