@@ -2,6 +2,7 @@ import algoliasearch from "algoliasearch/lite";
 import { autocomplete, getAlgoliaHits } from "@algolia/autocomplete-js";
 
 import { h, render } from "preact";
+
 import dayjs from "dayjs";
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -27,10 +28,10 @@ import colors from "./data/colors.json";
 import spacing from "./data/spacing.json";
 
 // todo: recent searches
-import { createLocalStorageRecentSearchesPlugin } from "@algolia/autocomplete-plugin-recent-searches";
+/* import { createLocalStorageRecentSearchesPlugin } from "@algolia/autocomplete-plugin-recent-searches";
 const recentSearchesPlugin = createLocalStorageRecentSearchesPlugin({
   key: "navbar"
-});
+}); */
 
 //
 function createRef(initialValue) {
@@ -404,6 +405,13 @@ const aaDemo = autocomplete({
           sourceType: "keyword",
           onSelect: ({ item }) => {
             switch (item.action) {
+              case "searchAlgoliaStackoverflow":
+                setContext({ index: "algolia-stackoverflow" });
+                setTag("Stack-Overflow");
+                setQuery("");
+                setIsOpen(true);
+                refresh();
+                break;
               case "showHelp":
                 break;
               case "applyDocsearch":
@@ -492,7 +500,7 @@ const aaDemo = autocomplete({
               {
                 label: "Search Algolia Docs",
                 action: "searchAlgoliaDocs",
-                keyword: ["al", "docs", "so"],
+                keyword: ["al", "docs"],
                 icon: "fab fa-algolia"
               },
               {
@@ -508,8 +516,8 @@ const aaDemo = autocomplete({
                 icon: "fas fa-terminal"
               },
               {
-                label: "Search Stack-Overflow",
-                action: "searchAlgoliaDocs",
+                label: "Search Algolia Stack-Overflow",
+                action: "searchAlgoliaStackoverflow",
                 keyword: ["so"],
                 icon: "fab fa-stack-overflow"
               },
@@ -672,16 +680,14 @@ const aaDemo = autocomplete({
           // ----------------
           slugName: "docsearchHub",
           onHighlight({ item }) {
-            //const wrapper = document.querySelector("#autocomplete-preview");
-            //const iframe = document.createElement("iframe");
-            //iframe.setAttribute("src", item.documentation.url);
-            //wrapper.appendChild(iframe);
-
             activeItemRef.current = item;
             setTimeout(() => {
               const preview = document.querySelector("#autocomplete-preview");
-              render(<ContentPreview content={item} />, preview);
-            }, 200);
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+              render(<ContentPreview content={item} />, preview, section);
+            }, 100);
           },
           onSelect: ({ item }) => {
             setContext({
@@ -1068,7 +1074,10 @@ const aaDemo = autocomplete({
               });
             }
           }
-        },
+        }
+      ];
+    } else if (state.context.index === "algolia-stackoverflow") {
+      return [
         {
           // ----------------
           // Stackoverflow #Algolia
@@ -1085,7 +1094,7 @@ const aaDemo = autocomplete({
                   indexName: "instantsearch-so-algolia",
                   query,
                   params: {
-                    hitsPerPage: 5
+                    hitsPerPage: 10
                   }
                 }
               ]
@@ -1118,13 +1127,19 @@ const aaDemo = autocomplete({
           onHighlight({ item }) {
             setTimeout(() => {
               const preview = document.querySelector("#autocomplete-preview");
+
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+
               switch (item.action) {
                 case "previewGithub":
                   render(
                     <ContentPreviewGithub
                       content={state.context.docsearchProject}
                     />,
-                    preview
+                    preview,
+                    section
                   );
                   break;
                 case "previewDocsearch":
@@ -1132,7 +1147,8 @@ const aaDemo = autocomplete({
                     <ContentPreviewDocsearch
                       content={state.context.docsearchProject}
                     />,
-                    preview
+                    preview,
+                    section
                   );
                   break;
                 default:
