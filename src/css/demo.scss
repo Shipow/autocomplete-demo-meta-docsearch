@@ -1,0 +1,51 @@
+body {
+  background-color: rgb(244, 244, 249);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  //darkmode
+  &[data-theme="dark"] {
+    color: rgb(245, 246, 247);
+    background-color: rgb(0, 0, 0);
+  }
+  }
+
+.demo-container {
+  padding: 0 16px;
+  margin: 0 auto;
+  max-width: 680px;
+  .algolia-logo {
+    display: block;
+    margin: 80px auto 40px;
+    width: 260px;
+  }
+}
+
+#user-flow{
+  position: absolute;
+  overflow-y: scroll;
+  height: 250px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgb(11, 54, 54);
+}
+
+
+#tagsWrapper {
+  .inputTag{
+    font-size: 0.8em;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    color: white;
+    padding: .3em .4em .3em .6em;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  .inputTagRemoveIcon{
+    color: rgba(255,255,255,.5);
+    padding: 0 0 0 0.4em;
+  }
+  &:hover inpuTagRemoveIcon{
+    color: white;
+  }
+}

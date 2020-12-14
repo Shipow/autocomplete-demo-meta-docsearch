@@ -1,0 +1,28 @@
+{
+  "name": "autocomplete-docsearch-refs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@algolia/autocomplete-core": "1.0.0-alpha.38",
+    "@algolia/autocomplete-js": "1.0.0-alpha.38",
+    "@algolia/autocomplete-plugin-recent-searches": "1.0.0-alpha.38",
+    "@algolia/autocomplete-preset-algolia": "1.0.0-alpha.38",
+    "algoliasearch": "4.8.3",
+    "chart.js": "2.9.4",
+    "dayjs": "1.9.7",
+    "preact": "10.4.7",
+    "preact-chartjs-2": "1.0.3",
+    "preact-markdown": "2.0.0",
+    "preact-markup": "1.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.0",
+    "parcel-bundler": "^1.6.1"
+  },
+  "keywords": []
+}

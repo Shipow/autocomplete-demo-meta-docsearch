@@ -1,0 +1,414 @@
+[
+  {
+    "name": "markdown",
+    "display_name": "Markdown",
+    "short_description": "Markdown is a lightweight markup language.",
+    "awesome_list": "https://github.com/mundimark/awesome-markdown"
+  },
+  {
+    "name": "cryptocurrency",
+    "display_name": "Cryptocurrency",
+    "short_description": "A cryptocurrency is a digital currency that uses cryptography.",
+    "awesome_list": "https://github.com/cmahon/awesome-cryptocurrency"
+  },
+  {
+    "name": "ruby",
+    "display_name": "Ruby",
+    "short_description": "Ruby is a scripting language designed for simplified object-oriented programming."
+  },
+  {
+    "name": "vim",
+    "display_name": "Vim",
+    "short_description": "Vim is a console-run text editor program."
+  },
+  {
+    "name": "unity",
+    "display_name": "Unity",
+    "short_description": "Unity is a game engine used to create 2D/3D video games, and simulations for computers, consoles, and mobile devices."
+  },
+  {
+    "name": "server",
+    "display_name": "Server",
+    "short_description": "A server is a program made to process requests and deliver data to clients."
+  },
+  {
+    "name": "jekyll",
+    "display_name": "Jekyll",
+    "short_description": "Jekyll is a simple, blog-aware static site generator."
+  },
+  {
+    "name": "flask",
+    "display_name": "Flask",
+    "short_description": "Flask is a web framework for Python based on the Werkzeug toolkit."
+  },
+  {
+    "name": "rails",
+    "display_name": "Rails",
+    "short_description": "Ruby on Rails (Rails) is a web application framework written in Ruby."
+  },
+  {
+    "name": "kubernetes",
+    "display_name": "Kubernetes",
+    "short_description": "Kubernetes is an open source system for automating deployment, scaling, and management of containerized applications."
+  },
+  {
+    "name": "shell",
+    "display_name": "Shell",
+    "short_description": "A shell is a command-line tool, designed to be run by the Unix shell."
+  },
+  {
+    "name": "go",
+    "display_name": "Go",
+    "short_description": "Go is a programming language built to resemble a simplified version of the C programming language."
+  },
+  {
+    "name": "gulp",
+    "display_name": "Gulp",
+    "short_description": "Gulp is a toolkit for automating and streamlining web development."
+  },
+  {
+    "name": "library",
+    "display_name": "Library",
+    "short_description": "A library is a collection of resources, often created to make programming a task simpler."
+  },
+  {
+    "name": "nlp",
+    "display_name": "Natural language processing",
+    "short_description": "Natural language processing (NLP) is the study of how computers and humans interact."
+  },
+  {
+    "name": "data-structures",
+    "display_name": "Data structures",
+    "short_description": "Data structures are a way of organizing and storing data."
+  },
+  {
+    "name": "cpp",
+    "display_name": "C++",
+    "short_description": "C++ is a general purpose and object-oriented programming language."
+  },
+  {
+    "name": "bot",
+    "display_name": "Bot",
+    "short_description": "A bot is an application that runs automated tasks over the Internet."
+  },
+  {
+    "name": "wordpress",
+    "display_name": "WordPress",
+    "short_description": "WordPress is a popular content management system, used for websites and blogs."
+  },
+  {
+    "name": "swift",
+    "display_name": "Swift",
+    "short_description": "Swift is a modern programming language focused on safety, performance, and expressivity."
+  },
+  {
+    "name": "npm",
+    "display_name": "npm",
+    "short_description": "npm is a package manager for JavaScript included with Node.js."
+  },
+  {
+    "name": "raspberry-pi",
+    "display_name": "Raspberry Pi",
+    "short_description": "The Raspberry Pi is a popular single-board computer."
+  },
+  {
+    "name": "electron",
+    "display_name": "Electron",
+    "short_description": "Electron is a framework for building cross-platform desktop applications with web technology."
+  },
+  {
+    "name": "vue",
+    "display_name": "Vue.js",
+    "short_description": "Vue.js is a JavaScript framework for building interactive web applications."
+  },
+  {
+    "name": "webpack",
+    "display_name": "Webpack",
+    "short_description": "Webpack is a bundler that takes modules with dependencies and creates static assets."
+  },
+  {
+    "name": "bash",
+    "display_name": "Bash",
+    "short_description": "Bash is a shell and command language interpreter for the GNU operating system."
+  },
+  {
+    "name": "bootstrap",
+    "display_name": "Bootstrap",
+    "short_description": "Bootstrap is an HTML, CSS, and JavaScript framework."
+  },
+  {
+    "name": "api",
+    "display_name": "API",
+    "short_description": "An API (Application Programming Interface) is a collection of protocols and subroutines for building software."
+  },
+  {
+    "name": "arduino",
+    "display_name": "Arduino",
+    "short_description": "Arduino is an open source hardware and software company and maker community."
+  },
+  {
+    "name": "windows",
+    "display_name": "Windows",
+    "short_description": "Windows is Microsoft's GUI-based operating system."
+  },
+  {
+    "name": "testing",
+    "display_name": "Testing",
+    "short_description": "Eliminate bugs and ship with more confidence by adding these tools to your workflow."
+  },
+  {
+    "name": "firebase",
+    "display_name": "Firebase",
+    "short_description": "Firebase is a mobile app development platform that provides data analysis and database web services for developers."
+  },
+  {
+    "name": "ethereum",
+    "display_name": "Ethereum",
+    "short_description": "Ethereum is a distributed public blockchain network."
+  },
+  {
+    "name": "redux",
+    "display_name": "Redux",
+    "short_description": "Redux is a predictable state container for JavaScript apps."
+  },
+  {
+    "name": "mongoose",
+    "display_name": "Mongoose",
+    "short_description": "Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment."
+  },
+  {
+    "name": "angular",
+    "display_name": "Angular",
+    "short_description": "Angular is an open source web application platform."
+  },
+  {
+    "name": "graphql",
+    "display_name": "GraphQL",
+    "short_description": "GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data."
+  },
+  {
+    "name": "rust",
+    "display_name": "Rust",
+    "short_description": "Rust is a systems programming language created by Mozilla."
+  },
+  {
+    "name": "minecraft",
+    "display_name": "Minecraft",
+    "short_description": "Minecraft is a sandbox video game."
+  },
+  {
+    "name": "tensorflow",
+    "display_name": "Tensorflow",
+    "short_description": "TensorFlow is an open source software library for numerical computation."
+  },
+  {
+    "name": "django",
+    "display_name": "Django",
+    "short_description": "Django is a web application framework for Python."
+  },
+  {
+    "name": "database",
+    "display_name": "Database",
+    "short_description": "A database is a structured set of data held in a computer, usually a server."
+  },
+  {
+    "name": "css",
+    "display_name": "CSS",
+    "short_description": "Cascading Style Sheets (CSS) is a language used most often to style and improve upon the appearance of views."
+  },
+  {
+    "name": "android",
+    "display_name": "Android",
+    "short_description": "Android is an operating system built by Google designed for mobile devices."
+  },
+  {
+    "name": "express",
+    "display_name": "Express",
+    "short_description": "Express is a minimal Node.js framework for web and mobile applications."
+  },
+  {
+    "name": "macos",
+    "display_name": "macOS",
+    "short_description": "macOS is Apple's operating system."
+  },
+  {
+    "name": "docker",
+    "display_name": "Docker",
+    "short_description": "Docker is a platform built for developers to build and run applications."
+  },
+  {
+    "name": "rest-api",
+    "display_name": "REST API",
+    "short_description": "A representational state transfer (REST) API is a way to provide compatibility between computer systems on the internet."
+  },
+  {
+    "name": "dotnet",
+    "display_name": ".NET",
+    "short_description": ".NET is a software framework developed by Microsoft."
+  },
+  {
+    "name": "security",
+    "display_name": "Security",
+    "short_description": "Cybersecurity is the protection of computer hardware, software, and data from theft, damage, and malicious intent."
+  },
+  {
+    "name": "mysql",
+    "display_name": "MySQL",
+    "short_description": "MySQL is an open source relational database management system."
+  },
+  {
+    "name": "es6",
+    "display_name": "ES6",
+    "short_description": "ECMAScript 6 is the sixth release of the ECMAScript language."
+  },
+  {
+    "name": "git",
+    "display_name": "Git",
+    "short_description": "Git is the most widely used version control system."
+  },
+  {
+    "name": "kotlin",
+    "display_name": "Kotlin",
+    "short_description": "Kotlin is a statically typed programming language for multiplatform applications."
+  },
+  {
+    "name": "terraform",
+    "display_name": "Terraform",
+    "short_description": "An infrastructure-as-code tool for building, changing, and versioning infrastructure safely and efficiently."
+  },
+  {
+    "name": "javascript",
+    "display_name": "JavaScript",
+    "short_description": "JavaScript is an object-oriented programming language used alongside HTML and CSS to give functionality to web pages."
+  },
+  {
+    "name": "scala",
+    "display_name": "Scala",
+    "short_description": "Scala is an object-oriented programming language."
+  },
+  {
+    "name": "aws",
+    "display_name": "Amazon Web Services",
+    "short_description": "Amazon Web Services provides on-demand cloud computing platforms on a subscription basis."
+  },
+  {
+    "name": "sql",
+    "display_name": "SQL",
+    "short_description": "SQL is a standard language for storing, retrieving and manipulating data in databases."
+  },
+  {
+    "name": "mongodb",
+    "display_name": "MongoDB",
+    "short_description": "MongoDB is a NoSQL cross-platform database."
+  },
+  {
+    "name": "postgresql",
+    "display_name": "PostgreSQL",
+    "short_description": "PostgreSQL is an open source database system."
+  },
+  {
+    "name": "machine-learning",
+    "display_name": "Machine learning",
+    "short_description": "Machine learning is a way of modeling and interpreting data that allows a piece of software to respond intelligently."
+  },
+  {
+    "name": "deep-learning",
+    "display_name": "Deep learning",
+    "short_description": "Deep Learning is an artificial neural network composed of many layers."
+  },
+  {
+    "name": "spring-boot",
+    "display_name": "Spring Boot",
+    "short_description": "Spring Boot is a coding and configuration model for Java applications."
+  },
+  {
+    "name": "java",
+    "display_name": "Java",
+    "short_description": "Java is an object-oriented programming language used mainly for desktop and mobile applications."
+  },
+  {
+    "name": "frontend",
+    "display_name": "Front end",
+    "short_description": "Front end is the programming and layout that people see and interact with."
+  },
+  {
+    "name": "csharp",
+    "display_name": "C#",
+    "short_description": "C# (C sharp) is an object-oriented programming language by Microsoft."
+  },
+  {
+    "name": "linux",
+    "display_name": "Linux",
+    "short_description": "Linux is an open source operating system."
+  },
+  {
+    "name": "haskell",
+    "display_name": "Haskell",
+    "short_description": "Haskell is a functional programming language with non-strict semantics, and strong static typing."
+  },
+  {
+    "name": "ansible",
+    "display_name": "Ansible",
+    "short_description": "Ansible is a simple and powerful automation engine."
+  },
+  {
+    "name": "nodejs",
+    "display_name": "Node.js",
+    "short_description": "Node.js is a tool for executing JavaScript in a variety of environments."
+  },
+  {
+    "name": "cli",
+    "display_name": "Command line interface",
+    "short_description": "A CLI, or command-line interface, is a console that helps users issue commands to a program."
+  },
+  {
+    "name": "html",
+    "display_name": "HTML",
+    "short_description": "HTML is the fundamental markup language for webpages."
+  },
+  {
+    "name": "r",
+    "display_name": "R",
+    "short_description": "R is a free programming language and software environment for statistical computing and graphics."
+  },
+  {
+    "name": "python",
+    "display_name": "Python",
+    "short_description": "Python is a dynamically typed programming language."
+  },
+  {
+    "name": "chrome-extension",
+    "display_name": "Chrome extension",
+    "short_description": "Google Chrome Extensions are add-ons that allow users to customize their Chrome web browser."
+  },
+  {
+    "name": "php",
+    "display_name": "PHP",
+    "short_description": "PHP is a popular general-purpose scripting language that works particularly well for server-side web development."
+  },
+  {
+    "name": "sass",
+    "display_name": "Sass",
+    "short_description": "Sass is a stable extension to classic CSS."
+  },
+  {
+    "name": "laravel",
+    "display_name": "Laravel",
+    "short_description": "Laravel is a PHP framework."
+  },
+  {
+    "name": "jquery",
+    "display_name": "jQuery",
+    "short_description": "jQuery is a lightweight library that simplifies programming with JavaScript."
+  },
+  {
+    "name": "blockchain",
+    "display_name": "Blockchain",
+    "short_description": "Blockchains are distributed ledgers that can record transactions between parties in a verifiable and permanent way."
+  },
+  {
+    "name": "c",
+    "display_name": "C",
+    "short_description": "C is a general purpose programming language that first appeared in 1972."
+  }
+]

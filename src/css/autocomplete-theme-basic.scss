@@ -1,0 +1,413 @@
+// ----------------
+// Variables
+// ----------------
+// we build theme with sass color tools
+$primary-color: rgb(62, 52, 211);
+$selected-color: rgba($primary-color, 0.1);
+$muted-color: desaturate(rgba($primary-color, 0.6),60);
+// darkmode sass
+$primary-color--dark: rgb(94, 96, 218);
+$selected-color--dark: rgba($primary-color--dark, 0.2);
+$muted-color--dark: desaturate(rgba($primary-color--dark, 0.6),60);
+
+:root{
+  --base-unit: 16;
+  --font-size: calc(var(--base-unit) * 1px);
+  --spacing-factor: 1; // xs:0.6 / sm:0.8 / md:1 / lg:1.2 / xl:1.5 - refs in spacing.json
+  --spacing: calc(var(--base-unit) * var(--spacing-factor) * 1px);
+  --spacing-half: calc(var(--spacing) / 2);
+  --spacing-third: calc(var(--spacing) / 2);
+  --icon-size: 18px;
+  --icon-stroke-width: calc((20 / var(--base-unit)) * 1.6 );
+  --primary-color: #{$primary-color};
+  --muted-color: #{$muted-color};
+  --selected-color: #{$selected-color};
+  --text-color: rgb(38, 38, 39);
+  --background-color: rgb(255, 255, 255);
+  --panel-shadow: 0 0 0 1px rgba(35, 38, 59, 0.1),
+  0 6px 16px -4px rgba(35, 38, 59, 0.15);
+  // darkmode css
+  --text-color--dark: rgb(214, 218, 221);
+  --background-color--dark:  rgb(21, 23, 42);
+  --panel-shadow--dark: inset 1px 1px 0 0 rgb(44, 46, 64),
+  0 3px 8px 0 rgb(0, 3, 9);
+}
+
+// ----------------
+// Darkmode
+// edit colors in variable section
+// ----------------
+body {
+  &[data-theme="dark"], &.dark {
+    --primary-color: #{$primary-color--dark};
+    --muted-color: #{$muted-color--dark};
+    --selected-color: #{$selected-color--dark};
+    --text-color: var(--text-color--dark);
+    --background-color: var(--background-color--dark);
+    --panel-shadow: var(--panel-shadow--dark);
+  }
+}
+
+// ----------------
+// Autocomplete
+// ----------------
+.aa-Autocomplete {
+  font-size: var(--font-size);
+  text-align: left;
+  //reset
+  *{
+    //background: rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+  }
+  // searchbox
+  form.aa-Form {
+    position: relative;
+    // the main input search field
+    display: flex;
+    border: 1px solid var(--muted-color);
+    align-items: center;
+    padding: 0 var(--spacing) 0 var(--spacing-half);
+    line-height: 1em;
+    background-color: var(--background-color);
+    border-radius: 3px;
+    
+    &, &.aa-Form--focused {
+       border-color: var(--primary-color);
+       box-shadow: var(--selected-color) 0 0 0 3px, inset var(--selected-color) 0 0 0 2px;
+       outline: currentcolor none medium;
+     }
+
+    .aa-InputWrapperPrefix{
+      order:1;
+      flex-shrink: 0;
+      flex-wrap: none;
+      display: flex;
+      align-items: center;
+      // the container for search and loading icons 
+      label.aa-Label, .aa-LoadingIndicator  {
+        cursor: initial;
+        flex-shrink: 0;
+        text-align: center;
+        width: calc(var(--spacing) + var(--icon-size));
+        // todo button.aa-SubmitButton
+        svg {
+          color: var(--primary-color);
+          stroke-width: var(--icon-stroke-width);
+          width: 20px;
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+
+    .aa-InputWrapper {
+      position: relative;
+      width: 100%;
+      order: 3;
+
+      // input of the searchbox, where the placeholder and query appear
+      input.aa-Input {
+        width: 100%;
+        height: calc( var(--spacing) * 2.5);
+        appearance: none;
+        background: none;
+        font: inherit;
+        color: var(--text-color);
+        // remove all native appearence
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+          -webkit-appearance: none;
+        }
+        &::placeholder {
+          opacity: 1;
+          color:var(--muted-color);
+        }
+        // remove focus effect as we moved it to parent wrapper
+        &:focus {
+           border-color: none;
+           box-shadow: none;
+           outline: none;
+         }
+      }
+    }
+    .aa-InputWrapperSuffix {
+      order:4;
+      display: flex;
+      align-items: center;
+        // accelerator to clear the query
+        button.aa-ResetButton {
+          display: flex;
+          align-items: center;
+          border: 0;
+          cursor: pointer;
+          background: none;
+          color: var(--muted-color);
+  
+          &[hidden]{
+            display: none;
+          }
+  
+          &:hover{
+            color: var(--text-color);
+          }
+  
+          svg {
+            width: var(--icon-size);
+            stroke-width: var(--icon-stroke-width);
+          }
+        }
+    }
+  }
+  // where the sources with results appear
+  .aa-Panel {
+    position: absolute;
+    // .aa-PanelLayout is wrapped here
+  }
+  // when a query isn't resolved yet
+  .aa-Panel--stalled {
+    filter: grayscale(1);
+    opacity: 0.5;
+    transition: opacity 200ms ease-in;
+  }
+}
+
+// ----------------
+// Panel Layout
+// child of .aa-Panel
+// ----------------
+.aa-PanelLayout {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: var(--spacing-half);
+  border-radius: 3px;
+  background-color:var(--background-color);
+  box-shadow: var(--panel-shadow);
+  text-align: left;
+  //max-height: 400px;
+
+  .col-results{
+    flex-grow: 2;
+    width: 50%;
+    overflow-y: scroll;
+    max-height: 400px;
+    // section.aa-Source
+    // section.aa-Source
+    // section.aa-Source
+  }
+  aside.col-preview{
+    max-height: 400px;
+    overflow: hidden;
+    width: 50%;
+    border-left: solid 1px var(--selected-color);
+    &:empty{
+      display:none;
+    }
+  }
+}
+
+// ----------------
+// Sources
+// children of .col-results
+// Each section can be styled independantly here
+// ----------------
+section.aa-Source {
+  margin: 0 0 var(--spacing-half);
+  // source title
+  .aa-SourceHeader {
+    position: relative;
+    line-height: var(--spacing);
+    height: var(--spacing);
+    margin: var(--spacing-half) var(--spacing) ;
+    // title typography
+    span {
+      color: var(--primary-color);
+      display: inline-block;
+      position: relative;
+      z-index: 2;
+      padding-right: var(--spacing-half);
+      font-size: 0.8em;
+      font-weight: 600;
+      text-transform: capitalize;
+      background: var(--background-color);
+    }
+    // Line separator
+    .aa-SourceHeaderLine {
+      z-index: 1;
+      position: absolute;
+      display: block;
+      top: var(--spacing-half);
+      left: 0;
+      right: 0;
+      height: 2px;
+      opacity: 0.3;
+      border-bottom: solid 1px var(--primary-color);
+    }
+    // hide empty header
+    &:empty{
+      display: none;
+    }
+  }
+
+  &:empty {
+    // hide empty section
+    display: none;
+  }
+  // the list of results inside the source
+  ul.aa-List {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// ----------------
+// Hit Layout - smart layout
+// ----------------
+li.aa-Item {
+  display: flex;
+  padding: 0 var(--spacing);
+  line-height: 1.1em;
+  align-items: center;
+  color: var(--text-color);
+  //box-shadow: inset 0 1px var(--selected-color);
+  cursor: pointer;
+  // when the result is active
+  &[aria-selected="true"] {
+    background-color: var(--selected-color);
+    
+    .aa-ItemActionButton{
+      visibility: visible;
+    }
+  }
+  // wrap hit with url but we don't need to see it
+  a.aa-ItemLink {
+    color: inherit;
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+  }
+  // the result type icon inlined svg or img
+  .aa-ItemSourceIcon {
+      flex-shrink: 0;
+      font-size: var(--icon-size);
+      width: var(--icon-size);
+      stroke-width: var(--icon-stroke-width);
+      color: var(--muted-color);
+      margin-right: var(--spacing-half);
+      display: flex;
+      align-items: center;
+  }
+
+  .aa-ItemContent {
+      flex-shrink: 1;
+      width:100%;
+      overflow: hidden;
+      color:var(--text-color);
+      cursor: pointer;
+      padding: calc(var(--spacing)*0.6) 0 calc(var(--spacing)*0.55);
+
+      &.aa-ItemContent--dual{
+        padding: calc(var(--spacing)*0.45) 0 calc(var(--spacing)*0.40);
+        .aa-ItemContentTitle,
+        .aa-ItemContentSubtitle {
+          width: 100%;
+        }
+      }
+
+      .aa-ItemContentTitle {
+          vertical-align: top;
+          display: inline-block;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          max-width: 100%;
+          overflow: hidden;
+
+          mark {
+              background: none;
+              font-style: normal;
+              font-weight: bold;
+          }
+      }
+
+      .aa-ItemContentSubtitle {
+          vertical-align: top;
+          display: inline-block;
+          white-space: nowrap;
+          color: var(--muted-color);
+          font-size: 0.75em;
+          text-overflow: ellipsis;
+          max-width: 100%;
+          overflow-x: hidden;
+
+          mark {
+              background: none;
+              font-style: normal;
+              font-weight: bold;
+          }
+
+          &:empty {
+            display:none;
+          }
+
+          .aa-ItemContentDash {
+            opacity: .4;
+            color:var(--muted-color);
+          }
+
+          .aa-ItemContentTag {
+            padding: 0.2em 0.4em 0.1em;
+            margin-right: 0.4em;
+            border-radius: 3px; 
+            background-color: var(--selected-color)
+          }
+      }
+      .aa-ItemContentDescription {
+        padding: .3em 0;
+        color: var(--text-color);
+        opacity: 0.6;
+        font-size: 0.9em;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        overflow-x: hidden;
+
+        mark {
+            background: none;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+      &:empty {
+        display:none;
+      }
+    }
+  }
+  // secondary click action
+  button.aa-ItemActionButton {
+    display: flex;
+    flex-shrink: 0;
+    visibility: hidden;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    align-items: center;
+    color: var(--muted-color);
+
+    &:hover svg {
+      color: var(--text-color)
+    }
+
+    svg {
+        width: var(--icon-size);
+        stroke-width: var(--icon-stroke-width);
+        color: var(--muted-color);
+        margin: 0 var(--spacing);
+        &:hover {
+            color: var(--text-color);
+        }
+    }
+  }
+}

@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <title>Autocomplete – DocSearch Demo</title>
+    <script
+      src="https://kit.fontawesome.com/cde989c88d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/preflight.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/utilities.min.css"
+      rel="stylesheet"
+    />
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
+    </head>
+    <link rel="stylesheet" href="src/css/autocomplete-theme-basic.scss" />
+    <link rel="stylesheet" href="src/css/demo.scss" />
+  </head>
+  <body>
+    <div class="demo-container">
+      <div class="text-center">
+        <!-- <svg
+          class="mb-2"
+          width="280"
+          viewBox="0 0 476 78"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g fill-rule="nonzero" fill="none">
+            <path
+              d="M36.493 77.289h-33.419c-1.698 0-3.074-1.37-3.074-3.061h36.523c12.769.062 24.6-6.663 31.038-17.642 6.438-10.979 6.504-24.543.174-35.584-6.331-11.041-18.096-17.88-30.865-17.942h-36.87c0-1.69 1.376-3.061 3.074-3.061h33.796c10.31.01 20.193 4.1 27.472 11.369 7.28 7.268 11.36 17.12 11.341 27.384-.059 21.366-17.741 38.536-39.191 38.536z"
+              fill="#5468FF"
+            />
+            <path
+              d="M0 69.045h23.711c2.932.01 5.761-1.071 7.933-3.031h-31.644v3.031zM0 60.801h36.374c.734-.987 1.418-1.975 2.053-3.071h-38.427v3.071zM0 52.546h41.025c.407-.987.773-1.975 1.091-3.061h-42.116v3.061zM0 44.302h43.306c.149-.987.268-2.034.337-3.061h-43.643v3.061zM0 36.058h43.633c-.069-1.037-.188-2.064-.337-3.071h-43.296v3.071zM0 27.804h42.116c-.317-1.037-.684-2.064-1.091-3.061h-41.025v3.061zM0 19.559h38.427c-.631-1.055-1.316-2.076-2.053-3.061h-36.374v3.061zM0 8.244v3.071h31.674c-2.171-1.962-5.001-3.043-7.933-3.031l-23.741-.039zM135.68 50.078c-1.822 3.303-4.582 5.999-7.933 7.751-3.767 1.931-7.962 2.888-12.197 2.784h-16.581v-43.69h16.571c4.239-.11 8.44.826 12.227 2.725 3.351 1.711 6.114 4.379 7.933 7.662 1.892 3.487 2.846 7.402 2.767 11.364.07 3.976-.889 7.904-2.787 11.404zm-11.414-2.192c2.294-2.179 3.441-5.249 3.441-9.212s-1.147-7.03-3.441-9.202c-2.301-2.185-5.52-3.278-9.659-3.278h-5.018v24.96h5.018c4.145 0 7.365-1.089 9.659-3.268zM175.456 19.125c3.323 1.888 6.066 4.643 7.933 7.968 1.975 3.518 2.981 7.493 2.916 11.522.053 4.045-.973 8.032-2.975 11.552-1.891 3.344-4.661 6.112-8.013 8.007-6.972 3.83-15.43 3.83-22.402 0-3.351-1.893-6.118-4.662-8.003-8.007-2.008-3.518-3.035-7.506-2.975-11.552-.061-4.036.967-8.015 2.975-11.522 1.894-3.328 4.66-6.082 8.003-7.968 6.996-3.831 15.475-3.831 22.471 0h.069zm-19.556 10.318c-2.043 2.245-3.068 5.302-3.074 9.172-.007 3.87 1.018 6.918 3.074 9.143 4.576 4.529 11.965 4.529 16.541 0 2.056-2.258 3.084-5.305 3.084-9.143 0-3.837-1.025-6.885-3.074-9.143-4.595-4.511-11.976-4.511-16.571 0l.02-.03zM225.108 20.882c3.7 2.991 6.218 7.187 7.11 11.848h-11.226c-.762-1.928-2.093-3.58-3.818-4.739-1.812-1.184-3.942-1.79-6.109-1.738-2.895-.102-5.673 1.143-7.517 3.367-1.904 2.258-2.856 5.286-2.856 9.084s.952 6.813 2.856 9.044c1.846 2.222 4.623 3.465 7.517 3.367 2.161.068 4.292-.521 6.109-1.688 1.714-1.149 3.044-2.782 3.818-4.69h11.236c-.901 4.657-3.418 8.851-7.11 11.848-3.656 2.942-8.284 4.417-13.883 4.423-3.928.086-7.807-.887-11.226-2.814-3.21-1.857-5.81-4.601-7.487-7.899-1.805-3.582-2.71-7.546-2.638-11.552-.073-4.01.832-7.977 2.638-11.562 1.677-3.298 4.277-6.042 7.487-7.899 3.419-1.915 7.294-2.877 11.216-2.784 5.606 0 10.234 1.461 13.883 4.384zM267.006 54.679c-1.26 2.01-3.069 3.62-5.216 4.641-2.61 1.216-5.469 1.808-8.35 1.728-4.919 0-8.971-1.195-12.158-3.584-3.182-2.37-5.103-6.057-5.216-10.012h11.295c.082 1.47.712 2.857 1.765 3.89 1.055.962 2.448 1.473 3.877 1.422 1.182.068 2.343-.329 3.233-1.106.794-.779 1.222-1.853 1.18-2.962.027-1.033-.366-2.034-1.091-2.774-.769-.78-1.686-1.401-2.697-1.827-1.071-.474-2.568-.987-4.472-1.698-2.324-.765-4.593-1.686-6.793-2.755-1.81-.931-3.366-2.286-4.532-3.949-1.339-2.022-2.002-4.413-1.894-6.832-.062-2.396.631-4.751 1.983-6.734 1.381-1.944 3.29-3.454 5.504-4.354 2.545-1.048 5.279-1.563 8.032-1.511 4.879 0 8.756 1.152 11.632 3.456 2.898 2.349 4.669 5.803 4.879 9.518h-11.483c-.138-1.287-.695-2.494-1.587-3.436-.925-.872-2.169-1.328-3.441-1.264-1.078-.036-2.134.314-2.975.987-.799.748-1.218 1.814-1.14 2.903-.032.972.325 1.916.992 2.626.731.757 1.608 1.358 2.578 1.767 1.031.454 2.519 1.03 4.463 1.728 2.366.761 4.67 1.702 6.892 2.814 1.83.97 3.403 2.357 4.591 4.048 1.36 2.043 2.033 4.463 1.924 6.911.015 2.243-.599 4.445-1.775 6.358zM285.263 25.325v9.153h14.875v7.978h-14.875v9.706h16.69v8.462h-27.261v-43.7h27.301v8.402zM335.015 52.645h-16.442l-2.737 7.968h-11.166l16.075-43.374h12.227l16.095 43.374h-11.315l-2.737-7.968zm-2.727-8.037l-5.464-16.064-5.524 16.064h10.988zM374.85 60.613l-9.5-16.498h-2.4v16.498h-10.611v-43.69h18.128c3.042-.08 6.061.549 8.816 1.836 2.258 1.069 4.141 2.789 5.405 4.937 1.223 2.179 1.842 4.643 1.795 7.138.088 2.921-.844 5.783-2.638 8.096-1.967 2.326-4.67 3.917-7.666 4.512l10.432 17.18-11.761-.01zm-11.9-23.696h6.585c1.672.149 3.339-.342 4.661-1.372 1.058-1.098 1.598-2.59 1.488-4.107.084-1.51-.465-2.987-1.517-4.078-1.284-1.081-2.945-1.613-4.621-1.481h-6.595v11.038zM424.81 20.882c3.703 2.988 6.222 7.186 7.11 11.848h-11.236c-.755-1.937-2.087-3.598-3.818-4.759-1.811-1.185-3.942-1.791-6.109-1.738-2.896-.1-5.673 1.153-7.507 3.387-1.904 2.258-2.856 5.286-2.856 9.084s.952 6.813 2.856 9.044c1.841 2.223 4.615 3.467 7.507 3.367 2.165.057 4.297-.546 6.109-1.728 1.717-1.146 3.047-2.78 3.818-4.69h11.236c-.897 4.659-3.415 8.854-7.11 11.848-3.656 2.942-8.284 4.417-13.883 4.423-3.931.087-7.814-.885-11.236-2.814-3.209-1.855-5.807-4.599-7.477-7.899-1.808-3.58-2.713-7.545-2.638-11.552-.077-4.01.828-7.978 2.638-11.562 1.67-3.299 4.268-6.044 7.477-7.899 3.423-1.926 7.305-2.894 11.236-2.804 5.6.039 10.227 1.521 13.883 4.443zM475.167 16.923v43.69h-10.68v-18.226h-16.63v18.226h-10.611v-43.69h10.611v16.933h16.63v-16.933z"
+              fill="currentColor"
+            />
+          </g>
+        </svg> -->
+        <img src="src/img/autocomplete-illus.svg" width="250"/>
+        <p>
+          <a
+            class="text-lg text-gray-500 no-underline"
+            href="https://autocomplete.algolia.com/"
+          >
+            🔮&nbsp;&nbsp;auto|<b class="text-gray-800">complete</b>
+            <span class="underline">V1.Alpha.39</span></a
+          >
+          Demo
+        </p>
+      </div>
+
+      <form
+        id="customizeCssForm"
+        class="mb-8 bg-gray-800 p-4 rounded w-3/6 text-gray-300 hidden"
+      >
+        <div class="text-xl mb-4">Customize CSS</div>
+        <div class="mb-2">
+          <label>Primary Color</label>
+          <input
+            id="customizeCssFormPrimaryColor"
+            type="text"
+            value="#f00"
+            class="border rounded p-1"
+          />
+        </div>
+        <div class="mb-2">
+          <label>Spacing</label>
+          <select id="customizeCssFormSpacing" class="border rounded p-1">
+            <option value="0.5">xs</option>
+            <option value="0.7">sm</option>
+            <option value="1">md</option>
+            <option value="1.2">lg</option>
+            <option value="1.5">xl</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <input type="checkbox" id="darkSwitch" />
+          <label for="darkSwitch">Dark Mode</label>
+        </div>
+        <input
+          type="submit"
+          class="mt-4 p-2 rounded bg-indigo-500 text-white"
+        />
+      </form>
+
+      <div class="mt-8">
+        <div
+          id="autocomplete"
+          class="form-input block w-full sm:text-sm sm:leading-5"
+        ></div>
+        <div class="aa-Panel"></div>
+      </div>
+    </div>
+
+
+
+    <div class="hidden m-auto w-3/6 grid grid-cols-1 gap-8">
+      <div>
+        <div
+          class="flex flex-col space-y-3 sm:flex-row text-xs sm:space-y-0 sm:space-x-4"
+        >
+          <div class="w-32 flex-shrink-0">
+            <div class="h-10 flex flex-col justify-center">
+              <div class="text-sm font-semibold text-gray-900">Gray</div>
+              <div>
+                <code class="text-xs text-gray-500">colors.coolGray</code>
+              </div>
+            </div>
+          </div>
+          <div
+            class="min-w-0 flex-1 grid grid-cols-5 2xl:grid-cols-10 gap-x-4 gap-y-3 2xl:gap-x-2"
+          >
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(249, 250, 251);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">50</div>
+                <div>#F9FAFB</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(243, 244, 246);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">100</div>
+                <div>#F3F4F6</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(229, 231, 235);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">200</div>
+                <div>#E5E7EB</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(209, 213, 219);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">300</div>
+                <div>#D1D5DB</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(156, 163, 175);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">400</div>
+                <div>#9CA3AF</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(107, 114, 128);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">500</div>
+                <div>#6B7280</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(75, 85, 99);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">600</div>
+                <div>#4B5563</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(55, 65, 81);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">700</div>
+                <div>#374151</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(31, 41, 55);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">800</div>
+                <div>#1F2937</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(17, 24, 39);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">900</div>
+                <div>#111827</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div >
+        <div
+          class="flex flex-col space-y-3 sm:flex-row text-xs sm:space-y-0 sm:space-x-4"
+        >
+          <div class="w-32 flex-shrink-0">
+            <div class="h-10 flex flex-col justify-center">
+              <div class="text-sm font-semibold text-gray-900">Red</div>
+              <div><code class="text-xs text-gray-500">colors.red</code></div>
+            </div>
+          </div>
+          <div
+            class="min-w-0 flex-1 grid grid-cols-5 2xl:grid-cols-10 gap-x-4 gap-y-3 2xl:gap-x-2"
+          >
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(254, 242, 242);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">50</div>
+                <div>#FEF2F2</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(254, 226, 226);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">100</div>
+                <div>#FEE2E2</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(254, 202, 202);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">200</div>
+                <div>#FECACA</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(252, 165, 165);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">300</div>
+                <div>#FCA5A5</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(248, 113, 113);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">400</div>
+                <div>#F87171</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(239, 68, 68);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">500</div>
+                <div>#EF4444</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(220, 38, 38);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">600</div>
+                <div>#DC2626</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(185, 28, 28);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">700</div>
+                <div>#B91C1C</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(153, 27, 27);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">800</div>
+                <div>#991B1B</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(127, 29, 29);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">900</div>
+                <div>#7F1D1D</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="flex flex-col space-y-3 sm:flex-row text-xs sm:space-y-0 sm:space-x-4"
+        >
+          <div class="w-32 flex-shrink-0">
+            <div class="h-10 flex flex-col justify-center">
+              <div class="text-sm font-semibold text-gray-900">Yellow</div>
+              <div><code class="text-xs text-gray-500">colors.amber</code></div>
+            </div>
+          </div>
+          <div
+            class="min-w-0 flex-1 grid grid-cols-5 2xl:grid-cols-10 gap-x-4 gap-y-3 2xl:gap-x-2"
+          >
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(255, 251, 235);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">50</div>
+                <div>#FFFBEB</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(254, 243, 199);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">100</div>
+                <div>#FEF3C7</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(253, 230, 138);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">200</div>
+                <div>#FDE68A</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(252, 211, 77);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">300</div>
+                <div>#FCD34D</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(251, 191, 36);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">400</div>
+                <div>#FBBF24</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(245, 158, 11);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">500</div>
+                <div>#F59E0B</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(217, 119, 6);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">600</div>
+                <div>#D97706</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(180, 83, 9);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">700</div>
+                <div>#B45309</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(146, 64, 14);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">800</div>
+                <div>#92400E</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(120, 53, 15);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">900</div>
+                <div>#78350F</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="flex flex-col space-y-3 sm:flex-row text-xs sm:space-y-0 sm:space-x-4"
+        >
+          <div class="w-32 flex-shrink-0">
+            <div class="h-10 flex flex-col justify-center">
+              <div class="text-sm font-semibold text-gray-900">Green</div>
+              <div>
+                <code class="text-xs text-gray-500">colors.emerald</code>
+              </div>
+            </div>
+          </div>
+          <div
+            class="min-w-0 flex-1 grid grid-cols-5 2xl:grid-cols-10 gap-x-4 gap-y-3 2xl:gap-x-2"
+          >
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(236, 253, 245);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">50</div>
+                <div>#ECFDF5</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(209, 250, 229);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">100</div>
+                <div>#D1FAE5</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(167, 243, 208);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">200</div>
+                <div>#A7F3D0</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(110, 231, 183);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">300</div>
+                <div>#6EE7B7</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(52, 211, 153);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">400</div>
+                <div>#34D399</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(16, 185, 129);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">500</div>
+                <div>#10B981</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(5, 150, 105);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">600</div>
+                <div>#059669</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(4, 120, 87);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">700</div>
+                <div>#047857</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(6, 95, 70);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">800</div>
+                <div>#065F46</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(6, 78, 59);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">900</div>
+                <div>#064E3B</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="flex flex-col space-y-3 sm:flex-row text-xs sm:space-y-0 sm:space-x-4"
+        >
+          <div class="w-32 flex-shrink-0">
+            <div class="h-10 flex flex-col justify-center">
+              <div class="text-sm font-semibold text-gray-900">Blue</div>
+              <div><code class="text-xs text-gray-500">colors.blue</code></div>
+            </div>
+          </div>
+          <div
+            class="min-w-0 flex-1 grid grid-cols-5 2xl:grid-cols-10 gap-x-4 gap-y-3 2xl:gap-x-2"
+          >
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(239, 246, 255);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">50</div>
+                <div>#EFF6FF</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(219, 234, 254);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">100</div>
+                <div>#DBEAFE</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(191, 219, 254);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">200</div>
+                <div>#BFDBFE</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(147, 197, 253);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">300</div>
+                <div>#93C5FD</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(96, 165, 250);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">400</div>
+                <div>#60A5FA</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(59, 130, 246);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">500</div>
+                <div>#3B82F6</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(37, 99, 235);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">600</div>
+                <div>#2563EB</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(29, 78, 216);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">700</div>
+                <div>#1D4ED8</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(30, 64, 175);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">800</div>
+                <div>#1E40AF</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(30, 58, 138);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">900</div>
+                <div>#1E3A8A</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="flex flex-col space-y-3 sm:flex-row text-xs sm:space-y-0 sm:space-x-4"
+        >
+          <div class="w-32 flex-shrink-0">
+            <div class="h-10 flex flex-col justify-center">
+              <div class="text-sm font-semibold text-gray-900">Indigo</div>
+              <div>
+                <code class="text-xs text-gray-500">colors.indigo</code>
+              </div>
+            </div>
+          </div>
+          <div
+            class="min-w-0 flex-1 grid grid-cols-5 2xl:grid-cols-10 gap-x-4 gap-y-3 2xl:gap-x-2"
+          >
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(238, 242, 255);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">50</div>
+                <div>#EEF2FF</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(224, 231, 255);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">100</div>
+                <div>#E0E7FF</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(199, 210, 254);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">200</div>
+                <div>#C7D2FE</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(165, 180, 252);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">300</div>
+                <div>#A5B4FC</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(129, 140, 248);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">400</div>
+                <div>#818CF8</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(99, 102, 241);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">500</div>
+                <div>#6366F1</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(79, 70, 229);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">600</div>
+                <div>#4F46E5</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(67, 56, 202);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">700</div>
+                <div>#4338CA</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(55, 48, 163);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">800</div>
+                <div>#3730A3</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(49, 46, 129);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">900</div>
+                <div>#312E81</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="flex flex-col space-y-3 sm:flex-row text-xs sm:space-y-0 sm:space-x-4"
+        >
+          <div class="w-32 flex-shrink-0">
+            <div class="h-10 flex flex-col justify-center">
+              <div class="text-sm font-semibold text-gray-900">Purple</div>
+              <div>
+                <code class="text-xs text-gray-500">colors.violet</code>
+              </div>
+            </div>
+          </div>
+          <div
+            class="min-w-0 flex-1 grid grid-cols-5 2xl:grid-cols-10 gap-x-4 gap-y-3 2xl:gap-x-2"
+          >
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(245, 243, 255);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">50</div>
+                <div>#F5F3FF</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(237, 233, 254);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">100</div>
+                <div>#EDE9FE</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(221, 214, 254);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">200</div>
+                <div>#DDD6FE</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(196, 181, 253);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">300</div>
+                <div>#C4B5FD</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(167, 139, 250);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">400</div>
+                <div>#A78BFA</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(139, 92, 246);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">500</div>
+                <div>#8B5CF6</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(124, 58, 237);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">600</div>
+                <div>#7C3AED</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(109, 40, 217);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">700</div>
+                <div>#6D28D9</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(91, 33, 182);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">800</div>
+                <div>#5B21B6</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(76, 29, 149);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">900</div>
+                <div>#4C1D95</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="flex flex-col space-y-3 sm:flex-row text-xs sm:space-y-0 sm:space-x-4"
+        >
+          <div class="w-32 flex-shrink-0">
+            <div class="h-10 flex flex-col justify-center">
+              <div class="text-sm font-semibold text-gray-900">Pink</div>
+              <div><code class="text-xs text-gray-500">colors.pink</code></div>
+            </div>
+          </div>
+          <div
+            class="min-w-0 flex-1 grid grid-cols-5 2xl:grid-cols-10 gap-x-4 gap-y-3 2xl:gap-x-2"
+          >
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(253, 242, 248);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">50</div>
+                <div>#FDF2F8</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(252, 231, 243);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">100</div>
+                <div>#FCE7F3</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(251, 207, 232);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">200</div>
+                <div>#FBCFE8</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(249, 168, 212);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">300</div>
+                <div>#F9A8D4</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(244, 114, 182);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">400</div>
+                <div>#F472B6</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(236, 72, 153);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">500</div>
+                <div>#EC4899</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(219, 39, 119);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">600</div>
+                <div>#DB2777</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(190, 24, 93);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">700</div>
+                <div>#BE185D</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(157, 23, 77);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">800</div>
+                <div>#9D174D</div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <div
+                class="h-10 w-full rounded ring-1 ring-inset ring-black ring-opacity-0"
+                style="background-color: rgb(131, 24, 67);"
+              ></div>
+              <div
+                class="px-0.5 md:flex md:justify-between md:space-x-2 2xl:space-x-0 2xl:block"
+              >
+                <div class="w-6 font-medium text-gray-900">900</div>
+                <div>#831843</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <img class="hidden" src="src/aa-Icons.svg" />
+
+    <script src="src/index.js"></script>
+    <script src="src/dark-switch.js"></script>
+    <script src="src/customizeCSS.js"></script>
+  </body>
+</html>

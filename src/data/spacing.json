@@ -1,0 +1,7 @@
+[
+  { "name": "Extra Small", "keyword": "xs", "value": 0.6 },
+  { "name": "Small", "keyword": "sm", "value": 0.8 },
+  { "name": "Medium", "keyword": "md", "value": 1 },
+  { "name": "Large", "keyword": "lg", "value": 1.3 },
+  { "name": "Extra Large", "keyword": "xl", "value": 1.5 }
+]
