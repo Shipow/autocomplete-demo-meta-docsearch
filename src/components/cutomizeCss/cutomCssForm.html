@@ -1,0 +1,30 @@
+<form
+  id="customizeCssForm"
+  class="mb-8 bg-gray-800 p-4 rounded w-3/6 text-gray-300 hidden"
+>
+  <div class="text-xl mb-4">Customize CSS</div>
+  <div class="mb-2">
+    <label>Primary Color</label>
+    <input
+      id="customizeCssFormPrimaryColor"
+      type="text"
+      value="#f00"
+      class="border rounded p-1"
+    />
+  </div>
+  <div class="mb-2">
+    <label>Spacing</label>
+    <select id="customizeCssFormSpacing" class="border rounded p-1">
+      <option value="0.5">xs</option>
+      <option value="0.7">sm</option>
+      <option value="1">md</option>
+      <option value="1.2">lg</option>
+      <option value="1.5">xl</option>
+    </select>
+  </div>
+  <div class="mb-4">
+    <input type="checkbox" id="darkSwitch" />
+    <label for="darkSwitch">Dark Mode</label>
+  </div>
+  <input type="submit" class="mt-4 p-2 rounded bg-indigo-500 text-white" />
+</form>

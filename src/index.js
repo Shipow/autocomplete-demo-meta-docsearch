@@ -324,6 +324,7 @@ const aaDemo = autocomplete({
           setTag(null);
           aaDemo.setContext({
             githubTopic: null,
+            githubProject: null,
             index: null,
             stepAction: null,
             stepLabel: null,
@@ -851,8 +852,13 @@ const aaDemo = autocomplete({
           // ----------------
           // GitHub Projects
           // ----------------
-          getItemUrl: ({ item }) =>
-            `https://github.com/${item.owner}/${item.repo}/issues/${item.number}`,
+          onSelect: ({ item }) => {
+            setContext({ githubProject: item.value });
+            setTag("GitHub:" + item.value);
+            setQuery("");
+            setIsOpen(true);
+            refresh();
+          },
           getItemInputValue: ({ state }) => state.query,
           getItems({ query }) {
             return githubSearchClient
@@ -896,8 +902,7 @@ const aaDemo = autocomplete({
                   query,
                   params: {
                     hitsPerPage: 15,
-                    filters:
-                      "NOT user.login:renovate[bot] AND NOT user.login:dependabot[bot]"
+                    filters: `repo:${state.context.githubProject} AND NOT user.login:renovate[bot] AND NOT user.login:dependabot[bot]`
                   }
                 }
               ]
