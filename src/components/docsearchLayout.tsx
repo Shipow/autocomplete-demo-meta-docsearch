@@ -25,7 +25,7 @@ export function DocsearchHitTemplate(item, root) {
     <a
       href={item.url}
       target="_blank"
-      rel="no-referrer"
+      rel="noreferrer"
       class="aa-ItemLink flex w-full"
     >
       <div class="aa-ItemSourceIcon">
