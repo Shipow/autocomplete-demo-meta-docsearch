@@ -507,7 +507,7 @@ const aaDemo = autocomplete({
               {
                 label: "Search Algolia's GitHub",
                 action: "searchGithub",
-                keyword: ["git", "issue", "pr"],
+                keyword: ["git", "pr"],
                 icon: "fab fa-github"
               },
               {
@@ -517,10 +517,16 @@ const aaDemo = autocomplete({
                 icon: "fas fa-terminal"
               },
               {
-                label: "Search Algolia Stack-Overflow",
+                label: "Search Stack-Overflow",
                 action: "searchAlgoliaStackoverflow",
                 keyword: ["so"],
                 icon: "fab fa-stack-overflow"
+              },
+              {
+                label: "Search Algolia Docs",
+                action: "searchAlgoliaDocs",
+                keyword: ["al", "docs"],
+                icon: "fab fa-algolia"
               },
               {
                 label: "Search Font-Awesome",
@@ -537,53 +543,53 @@ const aaDemo = autocomplete({
               {
                 label: "Toggle Darkmode",
                 action: "setDarkmode",
-                keyword: "css",
+                keyword: ["css"],
                 icon: "far fa-moon"
               },
               {
                 label: "Set Color Primary",
                 action: "startColorFlow",
                 attribute: "--primary-color",
-                keyword: "css",
+                keyword: ["css"],
                 icon: "fas fa-palette"
               },
               {
                 label: "Set Color Background",
                 action: "startColorFlow",
                 attribute: "--background-color",
-                keyword: "css",
+                keyword: ["css"],
                 icon: "fas fa-palette"
               },
               {
                 label: "Set Spacing",
                 action: "startSpacingFlow",
                 attribute: "--spacing-factor",
-                keyword: "css",
+                keyword: ["css"],
                 icon: "fas fa-compress"
               },
               {
                 label: "Reset CSS",
                 action: "resetCss",
-                keyword: "reset(soon)",
+                keyword: ["soon"],
                 icon: "fas fa-undo"
               },
               {
                 label: "Set Debug Mode",
                 action: "setDebugMode",
-                keyword: "debug(soon)",
+                keyword: ["soon"],
                 icon: "fas fa-bug"
               },
               {
                 label: "Apply to DocSearch",
                 action: "applyDocsearch",
-                keyword: "apply",
+                keyword: ["apply"],
                 url: "https://docsearch.algolia.com/",
                 icon: "fab fa-algolia"
               },
               {
                 label: "Subscribe to Newsletter",
                 action: "subscribeNewsletter",
-                keyword: "news(soon)",
+                keyword: ["soon"],
                 icon: "far fa-envelope"
               }
             ].filter((item) => {
@@ -1234,7 +1240,8 @@ const aaDemo = autocomplete({
                       "hierarchy",
                       "content",
                       "language",
-                      "version"
+                      "version",
+                      "url"
                     ]
                     //filters: `language:"en"`
                   }

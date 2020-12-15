@@ -24,7 +24,7 @@ body[data-theme="dark"] {
   background-color: rgb(11, 54, 54);
 }
 
-#tagsWrapper.inputTag {
+#tagsWrapper .inputTag {
   font-size: 0.8em;
   background-color: var(--primary-color);
   border-radius: 2px;
@@ -34,11 +34,11 @@ body[data-theme="dark"] {
   cursor: pointer;
 }
 
-#tagsWrapper.inputTagRemoveIcon {
+#tagsWrapper .inputTagRemoveIcon {
   color: rgba(255, 255, 255, 0.5);
   padding: 0 0 0 0.4em;
 }
 
-#tagsWrapper:hover inpuTagRemoveIcon {
+#tagsWrapper:hover .inpuTagRemoveIcon {
   color: white;
 }

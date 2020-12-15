@@ -2,6 +2,8 @@ import { h, Fragment, render } from "preact";
 
 function iconHit(type) {
   switch (type) {
+    case "lvl0":
+      return "far fa-file";
     case "lvl1":
       return "far fa-file";
     case "lvl2":
@@ -20,10 +22,21 @@ export function DocsearchHitTemplate(item, root) {
   // todo icon
   // todo: debug fragment
   render(
-    <div class="flex w-full">
+    <a
+      href={item.url}
+      target="_blank"
+      rel="no-referrer"
+      class="aa-ItemLink flex w-full"
+    >
       <div class="aa-ItemSourceIcon">
         <i class={iconHit(item.type)}></i>
       </div>
+
+      {item.hierarchy[item.type] && item.type === "lvl0" && (
+        <div className="aa-ItemContent aa-ItemContent--dual">
+          <div class="aa-ItemContentTitle">{item.hierarchy.lvl0}</div>
+        </div>
+      )}
 
       {item.hierarchy[item.type] && item.type === "lvl1" && (
         <div className="aa-ItemContent aa-ItemContent--dual">
@@ -59,7 +72,7 @@ export function DocsearchHitTemplate(item, root) {
       <button class="aa-ItemActionButton" type="button" title="select">
         <i class="mdi mdi-subdirectory-arrow-left"></i>
       </button>
-    </div>,
+    </a>,
     root
   );
 }
