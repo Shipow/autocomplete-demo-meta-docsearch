@@ -41,6 +41,18 @@ function createRef(initialValue) {
   };
 }
 
+// mdn
+const mdnSearchClient = algoliasearch(
+  "BU16S1B9J9",
+  "01cdd67acae098cf2fc908685b6aa9bc"
+);
+
+// discourse
+const algoliaDiscourseSearchClient = algoliasearch(
+  "G25OKIW19Q",
+  "33bcdc2abeb087998c63e65c41c17543"
+);
+
 // stack overflow algolia
 const stackoverflowAlgoliaSearchClient = algoliasearch(
   "T2ZX9HO66V",
@@ -293,7 +305,7 @@ const lastStateRef = createRef({});
 const aaDemo = autocomplete({
   panelContainer: ".aa-Panel",
   placeholder: "Search OSS or type / to display shortcuts",
-  //debug: true,
+  debug: true,
   autoFocus: true,
   openOnFocus: true,
   defaultSelectedItemId: 0,
@@ -406,16 +418,26 @@ const aaDemo = autocomplete({
           sourceType: "keyword",
           onSelect: ({ item }) => {
             switch (item.action) {
+              case "searchAlgoliaDiscourse":
+                setContext({ index: "algolia-discourse" });
+                setTag("Discourse");
+                setQuery("");
+                setIsOpen(true);
+                refresh();
+                break;
+              case "searchMDN":
+                setContext({ index: "mdn" });
+                setTag("MDN");
+                setQuery("");
+                setIsOpen(true);
+                refresh();
+                break;
               case "searchAlgoliaStackoverflow":
                 setContext({ index: "algolia-stackoverflow" });
                 setTag("Stack-Overflow");
                 setQuery("");
                 setIsOpen(true);
                 refresh();
-                break;
-              case "showHelp":
-                break;
-              case "applyDocsearch":
                 break;
               case "searchAlgoliaCode":
                 setContext({ index: "github-code" });
@@ -451,8 +473,6 @@ const aaDemo = autocomplete({
                 setQuery("");
                 setIsOpen(true);
                 refresh();
-                break;
-              case "subscribeNewsletter":
                 break;
               case "setDebugMode":
                 break;
@@ -492,12 +512,6 @@ const aaDemo = autocomplete({
           },
           getItems({ query }) {
             return [
-              // {
-              //   label: "Help",
-              //   action: "showHelp",
-              //   keyword: ["help"],
-              //   icon: "fas fa-life-ring"
-              // },
               {
                 label: "Search Algolia Docs",
                 action: "searchAlgoliaDocs",
@@ -507,7 +521,7 @@ const aaDemo = autocomplete({
               {
                 label: "Search Algolia's GitHub",
                 action: "searchGithub",
-                keyword: ["git", "pr"],
+                keyword: ["git"],
                 icon: "fab fa-github"
               },
               {
@@ -523,10 +537,16 @@ const aaDemo = autocomplete({
                 icon: "fab fa-stack-overflow"
               },
               {
-                label: "Search Algolia Docs",
-                action: "searchAlgoliaDocs",
-                keyword: ["al", "docs"],
-                icon: "fab fa-algolia"
+                label: "Search Algolia Discourse",
+                action: "searchAlgoliaDiscourse",
+                keyword: ["forum"],
+                icon: "fab fa-discourse"
+              },
+              {
+                label: "Search MDN",
+                action: "searchMDN",
+                keyword: ["mdn"],
+                icon: "fab fa-firefox"
               },
               {
                 label: "Search Font-Awesome",
@@ -854,6 +874,83 @@ const aaDemo = autocomplete({
               return hitLayoutSmart(item, {
                 main: item.name,
                 icon: buildIcon_MDI(item)
+              });
+            }
+          }
+        }
+      ];
+    } else if (state.context.index === "mdn") {
+      return [
+        {
+          // ----------------
+          // Source: Mozilla Developer Network
+          // ----------------
+          slugName: "MDN",
+          getItemInputValue: () => "",
+          getItems({ query }) {
+            return getAlgoliaHits({
+              searchClient: mdnSearchClient,
+              queries: [
+                {
+                  indexName: "MDN",
+                  query,
+                  params: {
+                    hitsPerPage: 12
+                  }
+                }
+              ]
+            });
+          },
+          templates: {
+            header() {
+              return `
+              <span>Mozilla Developer Network</span>
+              <div class="aa-SourceHeaderLine"></div>
+            `;
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.name,
+                extra: item.tags
+              });
+            }
+          }
+        }
+      ];
+    } else if (state.context.index === "algolia-discourse") {
+      return [
+        {
+          // ----------------
+          // Source: Algolia Discourse
+          // ----------------
+          slugName: "algolia-discourse",
+          getItemInputValue: () => "",
+          getItems({ query }) {
+            return getAlgoliaHits({
+              searchClient: algoliaDiscourseSearchClient,
+              queries: [
+                {
+                  indexName: "discourse-posts",
+                  query,
+                  params: {
+                    hitsPerPage: 12
+                  }
+                }
+              ]
+            });
+          },
+          templates: {
+            header() {
+              return `
+              <span>Algolia Discourse Forum</span>
+              <div class="aa-SourceHeaderLine"></div>
+            `;
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.topic.title,
+                extra: item.topic.tags,
+                description: item.content
               });
             }
           }
