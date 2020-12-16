@@ -18,8 +18,7 @@
     "preact": "10.4.7",
     "preact-chartjs-2": "1.0.3",
     "preact-markdown": "2.0.0",
-    "preact-markup": "1.6.0",
-    "tailwindcss": "2.0.2"
+    "preact-markup": "1.6.0"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",

@@ -18,6 +18,7 @@ import {
   ContentPreview,
   ContentPreviewGithub,
   ContentPreviewDocsearch,
+  MDNContentPreview,
   DocsearchRecordContentPreview
 } from "./components/contentPreviewDocsearch";
 
@@ -237,7 +238,7 @@ function setTag(tag) {
     );
     t.textContent = tag;
     const x = document.createElement("span");
-    x.setAttribute("class", "inputTagRemoveIcon fas fa-times");
+    x.setAttribute("class", "inputTagRemoveIcon fas fa-backspace align-middle");
     t.appendChild(x);
     tags.appendChild(t);
     t.addEventListener("click", () => {
@@ -297,6 +298,16 @@ function buildIcon_FA(item) {
 // Icon for mdi
 function buildIcon_MDI(item) {
   return `mdi mdi-${item.name}`;
+}
+
+// escape html for HTML docs
+function escapeHtml(html) {
+  return html
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 const activeItemRef = createRef(null);
@@ -886,6 +897,16 @@ const aaDemo = autocomplete({
           // Source: Mozilla Developer Network
           // ----------------
           slugName: "MDN",
+          onHighlight({ item }) {
+            activeItemRef.current = item;
+            setTimeout(() => {
+              const preview = document.querySelector("#autocomplete-preview");
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+              render(<MDNContentPreview content={item} />, preview, section);
+            }, 100);
+          },
           getItemInputValue: () => "",
           getItems({ query }) {
             return getAlgoliaHits({
@@ -910,8 +931,8 @@ const aaDemo = autocomplete({
             },
             item({ item }) {
               return hitLayoutSmart(item, {
-                main: item.name,
-                extra: item.tags
+                main: escapeHtml(item.name),
+                extra: item.categories.lvl1 || item.categories.lvl0
               });
             }
           }

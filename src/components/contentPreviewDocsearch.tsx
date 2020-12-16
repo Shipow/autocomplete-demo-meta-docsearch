@@ -317,3 +317,36 @@ export function DocsearchRecordContentPreview({ content }) {
     </section>
   );
 }
+
+export function MDNContentPreview({ content }) {
+  return (
+    <section class="animate__animated animate__fadeIn animate__faster">
+      <div className="m-3 p-3 shadow rounded overflow-hidden">
+        <div class="text-center text-lg">{content.name}</div>
+        <div class="text-center text-sm text-gray-400">
+          {content.categories.lvl1 || content.categories.lvl0}
+        </div>
+        <div class="mt-2 text-gray-600 text-sm">
+          {content.short_description}
+        </div>
+        <div class="mt-2">
+          {content.tags.slice(0, 4).map((tag) => {
+            return (
+              <div className="inline-block py-1 px-2 rounded-full bg-indigo-50 mb-1 mr-1 text-xs text-indigo-500 whitespace-pre-wrap">
+                {tag}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="m-3 p-2 bg-indigo-100 rounded overflow-hidden text-xs">
+        <pre class="">{content.syntax}</pre>
+        <pre class="">{content.Methods}</pre>
+        <pre class="text-center">{content.Properties}</pre>
+        <pre class="text-center">{content.child_type}</pre>
+        <pre class="text-center">{content.parent}</pre>
+        <pre class="text-center">{content.flags}</pre>
+      </div>
+    </section>
+  );
+}
