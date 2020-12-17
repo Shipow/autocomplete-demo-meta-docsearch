@@ -41,10 +41,13 @@ body[data-theme="dark"] #meta-logo::before {
   width: 180px;
   height: 115px;
   position: absolute;
-  top: 0;
-  opacity: 0.5;
-  filter: blur(25px) sepia(1) saturate(100) hue-rotate(170deg);
+  top: -2px;
+  right: 2px;
+  filter: blur(4px) brightness(0.5) sepia(1) saturate(200) hue-rotate(-70deg);
   mix-blend-mode: overlay;
+  animation: shakeX; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.3s; /* don't forget to set a duration! */
+  animation-iteration-count: 1;
 }
 
 body[data-theme="dark"] #meta-logo::after {
@@ -56,11 +59,14 @@ body[data-theme="dark"] #meta-logo::after {
   width: 180px;
   height: 115px;
   position: absolute;
-  top: 0;
-  left: 1px;
-  opacity: 0.9;
-  filter: blur(4px) sepia(1) saturate(200) hue-rotate(190deg);
+  top: 2px;
+  left: 2px;
+  opacity: 1;
+  filter: brightness(0.5) sepia(1) saturate(200) hue-rotate(90deg);
   mix-blend-mode: overlay;
+  animation: shakeY; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.3s; /* don't forget to set a duration! */
+  animation-iteration-count: 1;
 }
 
 #user-flow {
