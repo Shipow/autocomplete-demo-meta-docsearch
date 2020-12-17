@@ -178,6 +178,7 @@ body {
   display: flex;
   flex-wrap: none;
   margin-top: var(--spacing-half);
+  padding-bottom: var(--spacing-half);
   border-radius: 3px;
   background-color:var(--background-color);
   box-shadow: var(--panel-shadow);
@@ -316,7 +317,6 @@ li.aa-Item {
       color:var(--text-color);
       cursor: pointer;
       padding: calc(var(--spacing) / 3) 0;
-      vertical-align: top;
 
       .aa-ItemContentTitle {
           display: inline-block;
@@ -341,6 +341,7 @@ li.aa-Item {
           font-size: 0.75em;
           text-overflow: ellipsis;
           overflow-x: hidden;
+          margin-top: -2px;
 
           mark {
               background: none;
