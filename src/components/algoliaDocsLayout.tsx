@@ -38,7 +38,7 @@ export function AlgoliaDocsHitTemplate(item, root) {
   // todo icon
   //
   render(
-    <div class="flex w-full">
+    <a class="aa-ItemLink">
       <div class="aa-ItemSourceIcon">
         <i class={"faw " + iconHit(item.type)}></i>
       </div>
@@ -51,7 +51,7 @@ export function AlgoliaDocsHitTemplate(item, root) {
       <button class="aa-ItemActionButton" type="button" title="select">
         <i class="mdi mdi-subdirectory-arrow-left"></i>
       </button>
-    </div>,
+    </a>,
     root
   );
 }

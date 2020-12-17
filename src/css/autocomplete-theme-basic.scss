@@ -8,7 +8,7 @@ $muted-color: desaturate(rgba($primary-color, 0.6),60);
 // darkmode sass
 $primary-color--dark: rgb(94, 96, 218);
 $selected-color--dark: rgba($primary-color--dark, 0.2);
-$muted-color--dark: desaturate(rgba($primary-color--dark, 0.6),60);
+$muted-color--dark: desaturate(rgba($primary-color--dark, 0.6),40);
 
 :root{
   --base-unit: 16;
@@ -17,34 +17,30 @@ $muted-color--dark: desaturate(rgba($primary-color--dark, 0.6),60);
   --spacing: calc(var(--base-unit) * var(--spacing-factor) * 1px);
   --spacing-half: calc(var(--spacing) / 2);
   --spacing-third: calc(var(--spacing) / 2);
-  --icon-size: 18px;
+  --icon-size: 16px;
   --icon-stroke-width: calc((20 / var(--base-unit)) * 1.6 );
   --primary-color: #{$primary-color};
   --muted-color: #{$muted-color};
   --selected-color: #{$selected-color};
   --text-color: rgb(38, 38, 39);
+  --icon-color: rgb(119, 119, 163);
   --background-color: rgb(255, 255, 255);
   --panel-shadow: 0 0 0 1px rgba(35, 38, 59, 0.1),
   0 6px 16px -4px rgba(35, 38, 59, 0.15);
-  // darkmode css
-  --text-color--dark: rgb(214, 218, 221);
-  --background-color--dark:  rgb(21, 23, 42);
-  --panel-shadow--dark: inset 1px 1px 0 0 rgb(44, 46, 64),
-  0 3px 8px 0 rgb(0, 3, 9);
 }
 
 // ----------------
 // Darkmode
-// edit colors in variable section
 // ----------------
 body {
   &[data-theme="dark"], &.dark {
     --primary-color: #{$primary-color--dark};
     --muted-color: #{$muted-color--dark};
     --selected-color: #{$selected-color--dark};
-    --text-color: var(--text-color--dark);
-    --background-color: var(--background-color--dark);
-    --panel-shadow: var(--panel-shadow--dark);
+    --text-color: rgb(214, 218, 221);
+    --background-color: rgb(21, 23, 42);
+    --panel-shadow: inset 1px 1px 0 0 rgb(44, 46, 64),
+    0 3px 8px 0 rgb(0, 3, 9);
   }
 }
 
@@ -54,9 +50,9 @@ body {
 .aa-Autocomplete {
   font-size: var(--font-size);
   text-align: left;
+  line-height: 1em;
   //reset
-  *{
-    //background: rgba(0,0,0,0.1);
+  * {
     box-sizing: border-box;
     margin:0;
     padding:0;
@@ -106,7 +102,6 @@ body {
       position: relative;
       width: 100%;
       order: 3;
-
       // input of the searchbox, where the placeholder and query appear
       input.aa-Input {
         width: 100%;
@@ -213,13 +208,11 @@ body {
 // Each section can be styled independantly here
 // ----------------
 section.aa-Source {
-  margin: 0 0 var(--spacing-half);
   // source title
   .aa-SourceHeader {
     position: relative;
     line-height: var(--spacing);
-    height: var(--spacing);
-    margin: var(--spacing-half) var(--spacing) ;
+    margin:  var(--spacing-half) var(--spacing) var(--spacing-third);
     // title typography
     span {
       color: var(--primary-color);
@@ -271,8 +264,10 @@ li.aa-Item {
   line-height: 1.1em;
   align-items: center;
   color: var(--text-color);
+  height: 100%;
   //box-shadow: inset 0 1px var(--selected-color);
   cursor: pointer;
+
   // when the result is active
   &[aria-selected="true"] {
     background-color: var(--selected-color);
@@ -287,42 +282,49 @@ li.aa-Item {
     text-decoration: none;
     width: 100%;
     display: flex;
+    align-items: center;
   }
   // the result type icon inlined svg or img
   .aa-ItemSourceIcon {
+      box-shadow: inset 0 0 0 1px var(--selected-color);
+      border-radius: 3px;
+      margin: 2px 0;
       flex-shrink: 0;
       font-size: var(--icon-size);
-      width: var(--icon-size);
+      width: calc(var(--icon-size) + var(--spacing) );
+      height: calc(var(--icon-size) + var(--spacing) );
       stroke-width: var(--icon-stroke-width);
-      color: var(--muted-color);
+      color: var(--icon-color);
       margin-right: var(--spacing-half);
       display: flex;
       align-items: center;
+      justify-content: center;
+      i {
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      img {
+        width: var(--icon-size);
+        height: var(--icon-size);
+      }
   }
 
   .aa-ItemContent {
       flex-shrink: 1;
       width:100%;
-      overflow: hidden;
       color:var(--text-color);
       cursor: pointer;
-      padding: calc(var(--spacing)*0.6) 0 calc(var(--spacing)*0.55);
-
-      &.aa-ItemContent--dual{
-        padding: calc(var(--spacing)*0.45) 0 calc(var(--spacing)*0.40);
-        .aa-ItemContentTitle,
-        .aa-ItemContentSubtitle {
-          width: 100%;
-        }
-      }
+      padding: calc(var(--spacing) / 3) 0;
+      vertical-align: top;
 
       .aa-ItemContentTitle {
-          vertical-align: top;
           display: inline-block;
+          max-width: 100%;
           white-space: nowrap;
           text-overflow: ellipsis;
-          max-width: 100%;
-          overflow: hidden;
+          overflow-x: hidden;
+          padding-top: 2px;
 
           mark {
               background: none;
@@ -332,13 +334,12 @@ li.aa-Item {
       }
 
       .aa-ItemContentSubtitle {
-          vertical-align: top;
           display: inline-block;
+          max-width: 100%;
           white-space: nowrap;
           color: var(--muted-color);
           font-size: 0.75em;
           text-overflow: ellipsis;
-          max-width: 100%;
           overflow-x: hidden;
 
           mark {
@@ -352,22 +353,35 @@ li.aa-Item {
           }
 
           .aa-ItemContentDash {
+            display: none;
             opacity: .4;
             color:var(--muted-color);
           }
 
           .aa-ItemContentTag {
-            padding: 0.2em 0.4em 0.1em;
+            padding: 0.08em 0.3em;
             margin-right: 0.4em;
             border-radius: 3px; 
             background-color: var(--selected-color)
           }
       }
+
+      &.aa-ItemContent--dual{
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        justify-content: center;
+
+        .aa-ItemContentTitle, .aa-ItemContentSubtitle {
+          display: block;
+        }
+      }
+
       .aa-ItemContentDescription {
         padding: .3em 0;
         color: var(--text-color);
-        opacity: 0.6;
-        font-size: 0.9em;
+        opacity: 0.7;
+        font-size: 0.85em;
         text-overflow: ellipsis;
         max-width: 100%;
         overflow-x: hidden;

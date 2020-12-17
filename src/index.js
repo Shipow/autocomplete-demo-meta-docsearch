@@ -139,8 +139,8 @@ function hitLayoutSmart(item, { main, extra, icon, url, description }) {
       <div class="aa-ItemContent">
         <span class="aa-ItemContentTitle">${main}</span>
         ${
-          typeof extra === "string" || typeof extra === "number"
-            ? `<span class="aa-ItemContentSubtitle"><span class="aa-ItemContentDash">—</span> ${extra}</span>`
+          typeof extra === "string"
+            ? `<span class="aa-ItemContentSubtitle">${extra}</span>`
             : ""
         }
         ${
@@ -892,6 +892,40 @@ const aaDemo = autocomplete({
       ];
     } else if (state.context.index === "mdn") {
       return [
+        // {
+        //   // ----------------
+        //   // Filters: Mdn tags
+        //   // ----------------
+        //   slugName: "mdnTags",
+        //   onSelect: ({ item }) => {
+        //     setContext({ mdnTag: item.value });
+        //     setTag(item.value);
+        //     setIsOpen(true);
+        //     refresh();
+        //   },
+        //   getItemInputValue: () => "",
+        //   getItems({ query }) {
+        //     return mdnSearchClient
+        //       .initIndex("MDN")
+        //       .searchForFacetValues("tags", query, { maxFacetHits: 5 })
+        //       .then(({ facetHits }) => {
+        //         return facetHits.filter((item) => {
+        //           return !state.context.mdnTag;
+        //         });
+        //       });
+        //   },
+        //   templates: {
+        //     header({ items }) {
+        //       return headerLayout({ items, sourceTitle: "MDN Tags" });
+        //     },
+        //     item({ item }) {
+        //       return hitLayoutSmart(item, {
+        //         main: item.value,
+        //         extra: item.count
+        //       });
+        //     }
+        //   }
+        // },
         {
           // ----------------
           // Source: Mozilla Developer Network

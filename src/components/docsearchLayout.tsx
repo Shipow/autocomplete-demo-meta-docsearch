@@ -3,17 +3,17 @@ import { h, Fragment, render } from "preact";
 function iconHit(type) {
   switch (type) {
     case "lvl0":
-      return "far fa-file";
+      return "faw far fa-file";
     case "lvl1":
-      return "far fa-file";
+      return "faw far fa-file";
     case "lvl2":
-      return "fas fa-hashtag";
+      return "faw fas fa-hashtag";
     case "lvl3":
-      return "fas fa-hashtag";
+      return "faw fas fa-hashtag";
     case "lvl4":
-      return "fas fa-hashtag";
+      return "faw fas fa-hashtag";
     case "content":
-      return "fas fa-align-justify";
+      return "faw fas fa-align-justify";
     default:
   }
 }

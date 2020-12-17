@@ -323,7 +323,7 @@ export function MDNContentPreview({ content }) {
     <section class="animate__animated animate__fadeIn animate__faster">
       <div className="m-3 p-3 shadow rounded overflow-hidden">
         <div class="text-center text-lg">{content.name}</div>
-        <div class="text-center text-sm text-gray-400">
+        <div class="text-center text-xs text-gray-400">
           {content.categories.lvl1 || content.categories.lvl0}
         </div>
         <div class="mt-2 text-gray-600 text-sm">
@@ -341,12 +341,13 @@ export function MDNContentPreview({ content }) {
       </div>
       <div className="m-3 p-2 bg-indigo-100 rounded overflow-hidden text-xs">
         <pre class="">{content.syntax}</pre>
-        <pre class="">{content.Methods}</pre>
-        <pre class="text-center">{content.Properties}</pre>
-        <pre class="text-center">{content.child_type}</pre>
-        <pre class="text-center">{content.parent}</pre>
-        <pre class="text-center">{content.flags}</pre>
+        {/* <pre class="">{content.Methods}</pre>
+        <pre class="">{content.Properties}</pre> */}
       </div>
+      {/* <div class="">
+        {content.child_type} of {content.parent}
+      </div>
+      <div class="">{content.flags}</div> */}
     </section>
   );
 }
