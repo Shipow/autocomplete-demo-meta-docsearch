@@ -30,6 +30,8 @@ body[data-theme="dark"] #meta-logo .light {
 }
 body[data-theme="dark"] #meta-logo .dark {
   display: block;
+  animation: shakeY; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.15s; /* don't forget to set a duration! */
 }
 
 body[data-theme="dark"] #meta-logo::before {
@@ -38,11 +40,11 @@ body[data-theme="dark"] #meta-logo::before {
   content: "";
   z-index: 300;
   display: block;
-  width: 180px;
+  width: 170px;
   height: 115px;
   position: absolute;
   top: -2px;
-  right: 2px;
+  right: 8px;
   filter: blur(4px) brightness(0.5) sepia(1) saturate(200) hue-rotate(-70deg);
   mix-blend-mode: overlay;
   animation: shakeX; /* referring directly to the animation's @keyframe declaration */
@@ -56,16 +58,16 @@ body[data-theme="dark"] #meta-logo::after {
   content: "";
   z-index: 350;
   display: block;
-  width: 180px;
+  width: 181px;
   height: 115px;
   position: absolute;
   top: 2px;
   left: 2px;
-  opacity: 1;
+  opacity: 0.8;
   filter: brightness(0.5) sepia(1) saturate(200) hue-rotate(90deg);
   mix-blend-mode: overlay;
-  animation: shakeY; /* referring directly to the animation's @keyframe declaration */
-  animation-duration: 0.3s; /* don't forget to set a duration! */
+  animation: shakeX; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.5s; /* don't forget to set a duration! */
   animation-iteration-count: 1;
 }
 
