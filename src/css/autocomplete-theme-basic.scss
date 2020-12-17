@@ -3,8 +3,8 @@
 // ----------------
 // we build theme with sass color tools
 $primary-color: rgb(62, 52, 211);
-$selected-color: rgba($primary-color, 0.1);
-$muted-color: desaturate(rgba($primary-color, 0.6),60);
+$selected-color: rgba($primary-color, .15);
+$muted-color: desaturate(rgba($primary-color, 0.6),40);
 // darkmode sass
 $primary-color--dark: rgb(94, 96, 218);
 $selected-color--dark: rgba($primary-color--dark, 0.2);
@@ -178,22 +178,25 @@ body {
   display: flex;
   flex-wrap: none;
   margin-top: var(--spacing-half);
-  padding-bottom: var(--spacing-half);
   border-radius: 3px;
   background-color:var(--background-color);
   box-shadow: var(--panel-shadow);
   text-align: left;
+  padding-bottom: var(--spacing-half);
+  overflow: hidden;
 
   .col-results{
     // max-height: 400px;
     width: 50%;
     overflow-y: scroll;
     // section.aa-Source
-
   }
+
   aside.col-preview{
     //max-height: 400px;
-    width: 50%;
+    //animation: fadeIn ease-in .2s;
+    flex-shrink: 1;
+    max-width: 50%;
     overflow: hidden;
     border-left: solid 1px var(--selected-color);
 
@@ -213,7 +216,7 @@ section.aa-Source {
   .aa-SourceHeader {
     position: relative;
     line-height: var(--spacing);
-    margin:  var(--spacing-half) var(--spacing) var(--spacing-third);
+    margin:  var(--spacing) var(--spacing) var(--spacing-third);
     // title typography
     span {
       color: var(--primary-color);
@@ -316,7 +319,7 @@ li.aa-Item {
       width:100%;
       color:var(--text-color);
       cursor: pointer;
-      padding: calc(var(--spacing) / 3) 0;
+      padding: calc(var(--spacing) / 4) 0;
 
       .aa-ItemContentTitle {
           display: inline-block;

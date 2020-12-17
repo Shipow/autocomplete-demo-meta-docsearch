@@ -71,7 +71,7 @@ const options2 = {
 
 export function ContentPreview({ content }) {
   return (
-    <section class="animate__animated animate__fadeIn animate__faster">
+    <section class="">
       <div className="m-3 shadow rounded overflow-hidden">
         <img
           className="bg-white"

@@ -253,6 +253,7 @@ function setTag(tag) {
         icon: null
       });
       document.querySelector(".aa-InputWrapper input").focus();
+
       aaDemo.refresh();
     });
   }
@@ -578,16 +579,16 @@ const aaDemo = autocomplete({
                 icon: "far fa-moon"
               },
               {
-                label: "Set Color Primary",
+                label: "Set Primary Color",
                 action: "startColorFlow",
                 attribute: "--primary-color",
                 keyword: ["css"],
                 icon: "fas fa-palette"
               },
               {
-                label: "Set Color Background",
+                label: "Set Icon Color",
                 action: "startColorFlow",
-                attribute: "--background-color",
+                attribute: "--icon-color",
                 keyword: ["css"],
                 icon: "fas fa-palette"
               },

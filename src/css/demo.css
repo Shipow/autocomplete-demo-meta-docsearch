@@ -63,9 +63,9 @@ body[data-theme="dark"] #meta-logo::after {
   position: absolute;
   top: 2px;
   left: 2px;
-  opacity: 0.8;
-  filter: brightness(0.5) sepia(1) saturate(200) hue-rotate(90deg);
-  mix-blend-mode: overlay;
+  opacity: 0.9;
+  filter: brightness(0.5) sepia(1) saturate(200) hue-rotate(160deg);
+  mix-blend-mode: screen;
   animation: shakeX; /* referring directly to the animation's @keyframe declaration */
   animation-duration: 0.5s; /* don't forget to set a duration! */
   animation-iteration-count: 1;
