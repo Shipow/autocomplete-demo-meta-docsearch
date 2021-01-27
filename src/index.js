@@ -19,6 +19,7 @@ import {
   ContentPreviewGithub,
   ContentPreviewDocsearch,
   MDNContentPreview,
+  NPMContentPreview,
   DocsearchRecordContentPreview
 } from "./components/contentPreviewDocsearch";
 
@@ -41,6 +42,12 @@ function createRef(initialValue) {
     current: initialValue
   };
 }
+
+// npm
+const npmSearchClient = algoliasearch(
+  "OFCNCOG2CU",
+  "f54e21fa3a2a0160595bb058179bfb1e"
+);
 
 // mdn
 const mdnSearchClient = algoliasearch(
@@ -131,7 +138,7 @@ function hitLayoutSmart(item, { main, extra, icon, url, description }) {
   if (icon && icon.match(imageExt)) {
     icon = `<img src="${icon}"/>`;
   } else if (icon && icon.match(iconSet)) {
-    icon = `<i class="faw ${icon}"></i>`;
+    icon = `<i class="${icon}"></i>`;
   }
 
   return `${!!url ? '<a class="aa-ItemLink" href="{url}">' : ""}
@@ -288,11 +295,11 @@ function setCssVar(attribute, value) {
 function buildIcon_FA(item) {
   switch (item.styles && item.styles[0]) {
     case "regular":
-      return `far fa-${item.name} faw`;
+      return `far fa-${item.name}`;
     case "solid":
-      return `fas fa-${item.name} faw`;
+      return `fas fa-${item.name}`;
     case "brands":
-      return `fab fa-${item.name} faw`;
+      return `fab fa-${item.name}`;
     default:
   }
 }
@@ -430,6 +437,13 @@ const aaDemo = autocomplete({
           sourceType: "keyword",
           onSelect: ({ item }) => {
             switch (item.action) {
+              case "searchNPM":
+                setContext({ index: "npm-search" });
+                setTag("NPM");
+                setQuery("");
+                setIsOpen(true);
+                refresh();
+                break;
               case "searchAlgoliaDiscourse":
                 setContext({ index: "algolia-discourse" });
                 setTag("Discourse");
@@ -559,6 +573,12 @@ const aaDemo = autocomplete({
                 action: "searchMDN",
                 keyword: ["mdn"],
                 icon: "fab fa-firefox"
+              },
+              {
+                label: "Search NPM",
+                action: "searchNPM",
+                keyword: ["npm"],
+                icon: "fab fa-npm"
               },
               {
                 label: "Search Font-Awesome",
@@ -968,6 +988,53 @@ const aaDemo = autocomplete({
               return hitLayoutSmart(item, {
                 main: escapeHtml(item.name),
                 extra: item.categories.lvl1 || item.categories.lvl0
+              });
+            }
+          }
+        }
+      ];
+    } else if (state.context.index === "npm-search") {
+      return [
+        {
+          // ----------------
+          // Source: NPM
+          // ----------------
+          slugName: "NPM",
+          onHighlight({ item }) {
+            activeItemRef.current = item;
+            setTimeout(() => {
+              const preview = document.querySelector("#autocomplete-preview");
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+              render(<NPMContentPreview content={item} />, preview, section);
+            }, 100);
+          },
+          getItemInputValue: () => "",
+          getItems({ query }) {
+            return getAlgoliaHits({
+              searchClient: npmSearchClient,
+              queries: [
+                {
+                  indexName: "npm-search",
+                  query,
+                  params: {
+                    hitsPerPage: 12
+                  }
+                }
+              ]
+            });
+          },
+          templates: {
+            header() {
+              return `
+              <span>NPM</span>
+              <div class="aa-SourceHeaderLine"></div>
+            `;
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: escapeHtml(item.name)
               });
             }
           }

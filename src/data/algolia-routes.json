@@ -1,0 +1,294 @@
+// account
+//   applications
+//     create
+//       dedicated
+//       enterprise
+//   audit-logs
+//   contacts
+//   details
+//   notifications
+//   plan
+//     billing
+//     cluster
+//     confirmation
+//     review
+//     select
+//   support
+//   teams
+// apps/:applicationId
+//   ab-tests
+//     create
+//     overview
+//   ai-synonyms
+//     :indexName
+//       accepted
+//       pending
+//       rejected
+//   analytics
+//     advanced(/:index)
+//     export(:/index)
+//     filters(/:index)
+//     geo(/:index)
+//     no-clicks(/:index)/(:view)
+//     no-results(/:index)/(:view)
+//     overview(/:index)
+//     results(/:index)
+//     searches(/:index)/(:view)
+//   api-keys
+//     all
+//     offline
+//     restricted
+//   billing
+//     details
+//     invoices
+//     overview
+//     payments
+//   crawler
+//     details
+//     exclusions
+//     settings
+//   dashboard
+//   dictionaries
+//     declensions
+//     segmentation
+//     stopwords
+//   embeddable
+//     monitoring
+//       cluster
+//       operations
+//       performance
+//       usage
+//   explorer
+//     browse(/:index)
+//     configuration(/:index)
+//       advanced-syntax
+//       deduplication-and-grouping
+//       exact-matching
+//       facets
+//       highlighting
+//       language
+//       no-results-behavior
+//       pagination
+//       personalization
+//       prefixing
+//       ranking-and-sorting
+//       reranking
+//       retrieved-attributes
+//       searchable-attributes
+//       segmentation-and-decompounding
+//       smart-sort
+//       snippeting
+//       special-characters
+//       stop-words
+//       synonyms
+//       typo-tolerance
+//       word-proximity
+//   indices
+//   insights(/:index)
+//   logs(/:index)
+//   query-rules(/:index(/:action(/:action2)))
+//   replicas(/:index)
+//   rules(/:indexName(/:action(/:action2)))
+//   rules(/:indexName)
+//   stats(/:index)
+//   ui-demos(/:index)
+//     edit/(:engineId)
+//     edit/new
+//   user_ids(/:index)
+//   infra
+//     analytics
+//     dsn/setup
+//     vault
+//   logs/insights
+//   monitoring
+//     alerts
+//     cluster
+//     insights
+//     logs
+//     operations
+//     performance
+//     status
+//     usage
+//   personalization
+//     implementation
+//     strategy
+//     user-profiles
+//   places/search
+//   promote
+//     ab-test
+//     crawler
+//     personalization
+//     query-suggestions
+//     reranking
+//     rules
+//     synonyms
+//   query-suggestions
+//     :indexName
+//       banned_expressions
+//       overview
+//     new
+//   reranking(/:indexName)
+//   rules(/:indexName)
+//     manual-editor
+//       duplicate/(:objectId)
+//       edit/(:objectId)
+//       new
+//     visual-editor
+//       duplicate/(:objectId)
+//       edit/(:objectId)
+//       new
+//   team
+//   zendesk(/:crawlerId)
+
+[
+  "account/applications",
+
+  "account/applications/create/dedicated",
+  "account/applications/create/enterprise",
+
+  "account/audit-logs",
+  "account/contacts",
+  "account/details",
+  "account/notifications",
+
+  "account/plan/billing",
+  "account/plan/cluster",
+  "account/plan/confirmation",
+  "account/plan/review",
+  "account/plan/select",
+
+  "account/support",
+  "account/teams",
+
+  "apps/:applicationId/ab-tests/create",
+  "apps/:applicationId/ab-tests/overview",
+
+  "apps/:applicationId/ai-synonyms/:indexName/accepted",
+  "apps/:applicationId/ai-synonyms/:indexName/pending",
+  "apps/:applicationId/ai-synonyms/:indexName/rejected",
+
+  "apps/:applicationId/analytics/advanced(/:index)",
+  "apps/:applicationId/analytics/export(:/index)",
+  "apps/:applicationId/analytics/filters(/:index)",
+  "apps/:applicationId/analytics/geo(/:index)",
+  "apps/:applicationId/analytics/no-clicks(/:index)/(:view)",
+  "apps/:applicationId/analytics/no-results(/:index)/(:view)",
+  "apps/:applicationId/analytics/overview(/:index)",
+  "apps/:applicationId/analytics/results(/:index)",
+  "apps/:applicationId/analytics/searches(/:index)/(:view)",
+
+  "apps/:applicationId/api-keys/all",
+  "apps/:applicationId/api-keys/offline",
+  "apps/:applicationId/api-keys/restricted",
+
+  "apps/:applicationId/billing/details",
+  "apps/:applicationId/billing/invoices",
+  "apps/:applicationId/billing/overview",
+  "apps/:applicationId/billing/payments",
+
+  "apps/:applicationId/crawler/details",
+  "apps/:applicationId/crawler/exclusions",
+  "apps/:applicationId/crawler/settings",
+
+  "apps/:applicationId/dashboard",
+
+  "apps/:applicationId/dictionaries/declensions",
+  "apps/:applicationId/dictionaries/segmentation",
+  "apps/:applicationId/dictionaries/stopwords",
+
+  "apps/:applicationId/embeddable/monitoring/cluster",
+  "apps/:applicationId/embeddable/monitoring/operations",
+  "apps/:applicationId/embeddable/monitoring/performance",
+  "apps/:applicationId/embeddable/monitoring/usage",
+
+  "apps/:applicationId/explorer/browse(/:index)",
+
+  "apps/:applicationId/explorer/configuration(/:index)/advanced-syntax",
+  "apps/:applicationId/explorer/configuration(/:index)/deduplication-and-grouping",
+  "apps/:applicationId/explorer/configuration(/:index)/exact-matching",
+  "apps/:applicationId/explorer/configuration(/:index)/facets",
+  "apps/:applicationId/explorer/configuration(/:index)/highlighting",
+  "apps/:applicationId/explorer/configuration(/:index)/language",
+  "apps/:applicationId/explorer/configuration(/:index)/no-results-behavior",
+  "apps/:applicationId/explorer/configuration(/:index)/pagination",
+  "apps/:applicationId/explorer/configuration(/:index)/personalization",
+  "apps/:applicationId/explorer/configuration(/:index)/prefixing",
+  "apps/:applicationId/explorer/configuration(/:index)/ranking-and-sorting",
+  "apps/:applicationId/explorer/configuration(/:index)/reranking",
+  "apps/:applicationId/explorer/configuration(/:index)/retrieved-attributes",
+  "apps/:applicationId/explorer/configuration(/:index)/searchable-attributes",
+  "apps/:applicationId/explorer/configuration(/:index)/segmentation-and-decompounding",
+  "apps/:applicationId/explorer/configuration(/:index)/smart-sort",
+  "apps/:applicationId/explorer/configuration(/:index)/snippeting",
+  "apps/:applicationId/explorer/configuration(/:index)/special-characters",
+  "apps/:applicationId/explorer/configuration(/:index)/stop-words",
+  "apps/:applicationId/explorer/configuration(/:index)/synonyms",
+  "apps/:applicationId/explorer/configuration(/:index)/typo-tolerance",
+  "apps/:applicationId/explorer/configuration(/:index)/word-proximity",
+
+  "apps/:applicationId/explorer/indices",
+
+  "apps/:applicationId/explorer/insights(/:index)",
+
+  "apps/:applicationId/explorer/logs(/:index)",
+
+  "apps/:applicationId/explorer/query-rules(/:index(/:action(/:action2)))",
+
+  "apps/:applicationId/explorer/replicas(/:index)",
+
+  "apps/:applicationId/explorer/rules(/:indexName(/:action(/:action2)))",
+
+  "apps/:applicationId/explorer/rules(/:indexName)",
+
+  "apps/:applicationId/explorer/stats(/:index)",
+
+  "apps/:applicationId/explorer/ui-demos(/:index)/edit/(:engineId)",
+  "apps/:applicationId/explorer/ui-demos(/:index)/edit/new",
+  "apps/:applicationId/explorer/user_ids(/:index)",
+
+  "apps/:applicationId/infra/analytics",
+  "apps/:applicationId/infra/dsn/setup",
+  "apps/:applicationId/infra/vault",
+
+  "apps/:applicationId/logs/insights",
+
+  "apps/:applicationId/monitoring/alerts",
+  "apps/:applicationId/monitoring/cluster",
+  "apps/:applicationId/monitoring/insights",
+  "apps/:applicationId/monitoring/logs",
+  "apps/:applicationId/monitoring/operations",
+  "apps/:applicationId/monitoring/performance",
+  "apps/:applicationId/monitoring/status",
+  "apps/:applicationId/monitoring/usage",
+
+  "apps/:applicationId/personalization/implementation",
+  "apps/:applicationId/personalization/strategy",
+  "apps/:applicationId/personalization/user-profiles",
+
+  "apps/:applicationId/places/search",
+
+  "apps/:applicationId/promote/ab-test",
+  "apps/:applicationId/promote/crawler",
+  "apps/:applicationId/promote/personalization",
+  "apps/:applicationId/promote/query-suggestions",
+  "apps/:applicationId/promote/reranking",
+  "apps/:applicationId/promote/rules",
+  "apps/:applicationId/promote/synonyms",
+
+  "apps/:applicationId/query-suggestions/:indexName/banned_expressions",
+  "apps/:applicationId/query-suggestions/:indexName/overview",
+  "apps/:applicationId/query-suggestions/new",
+
+  "apps/:applicationId/reranking(/:indexName)",
+
+  "apps/:applicationId/rules(/:indexName)/manual-editor/duplicate/(:objectId)",
+  "apps/:applicationId/rules(/:indexName)/manual-editor/edit/(:objectId)",
+  "apps/:applicationId/rules(/:indexName)/manual-editor/new",
+  "apps/:applicationId/rules(/:indexName)/visual-editor/duplicate/(:objectId)",
+  "apps/:applicationId/rules(/:indexName)/visual-editor/edit/(:objectId)",
+  "apps/:applicationId/rules(/:indexName)/visual-editor/new",
+
+  "apps/:applicationId/team",
+
+  "apps/:applicationId/zendesk(/:crawlerId)"
+]

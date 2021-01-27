@@ -3,12 +3,14 @@
 // ----------------
 // we build theme with sass color tools
 $primary-color: rgb(62, 52, 211);
-$selected-color: rgba($primary-color, .15);
+$selected-color: rgba($primary-color, .1);
+$icon-color: rgb(119, 119, 163);
 $muted-color: desaturate(rgba($primary-color, 0.6),40);
 // darkmode sass
-$primary-color--dark: rgb(94, 96, 218);
-$selected-color--dark: rgba($primary-color--dark, 0.2);
-$muted-color--dark: desaturate(rgba($primary-color--dark, 0.6),40);
+$primary-color--dark: rgb(247, 247, 0);
+$selected-color--dark: rgba($primary-color--dark, 0.1);
+$icon-color--dark: rgb(31, 207, 248);
+$muted-color--dark: desaturate(rgba($primary-color--dark, 0.6),50);
 
 :root{
   --base-unit: 16;
@@ -22,8 +24,8 @@ $muted-color--dark: desaturate(rgba($primary-color--dark, 0.6),40);
   --primary-color: #{$primary-color};
   --muted-color: #{$muted-color};
   --selected-color: #{$selected-color};
+  --icon-color: #{$icon-color};
   --text-color: rgb(38, 38, 39);
-  --icon-color: rgb(119, 119, 163);
   --background-color: rgb(255, 255, 255);
   --panel-shadow: 0 0 0 1px rgba(35, 38, 59, 0.1),
   0 6px 16px -4px rgba(35, 38, 59, 0.15);
@@ -37,6 +39,7 @@ body {
     --primary-color: #{$primary-color--dark};
     --muted-color: #{$muted-color--dark};
     --selected-color: #{$selected-color--dark};
+    --icon-color: #{$icon-color--dark};
     --text-color: rgb(214, 218, 221);
     --background-color: rgb(21, 23, 42);
     --panel-shadow: inset 1px 1px 0 0 rgb(44, 46, 64),
@@ -303,6 +306,7 @@ li.aa-Item {
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
       i {
         text-rendering: auto;
         -webkit-font-smoothing: antialiased;

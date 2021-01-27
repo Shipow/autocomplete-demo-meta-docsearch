@@ -351,3 +351,71 @@ export function MDNContentPreview({ content }) {
     </section>
   );
 }
+
+export function NPMContentPreview({ content }) {
+  return (
+    <section class="animate__animated animate__fadeIn animate__faster">
+      <div className="m-3 p-3 shadow rounded overflow-hidden">
+        <div class="text-center text-lg">{content.name}</div>
+        <div class="mt-2 text-gray-600 text-sm">{content.description}</div>
+        <div>DL: {content.downloadsLast30Days}</div>
+        <div>Version: {content.version}</div>
+        <div>
+          <a href={content.repository.url}>
+            {content.repository.user}/{content.repository.project}
+          </a>
+        </div>
+        <div class="mt-2">
+          {content.keywords.slice(0, 4).map((keyword) => {
+            return (
+              <div className="inline-block py-1 px-2 rounded-full bg-indigo-50 mb-1 mr-1 text-xs text-indigo-500 whitespace-pre-wrap">
+                {keyword}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+//   "name": "po",
+//   "downloadsLast30Days": 51,
+//   "humanDownloadsLast30Days": "51",
+//   "version": "4.5.2",
+//   "description": "po = promiseify + co",
+//   "repository": {
+//     "url": "https://github.com/cloudcome/nodejs-po",
+//     "project": "nodejs-po",
+//     "user": "cloudcome",
+//     "host": "github.com",
+//     "path": "",
+//     "head": "aa51ab286ed85e37f039cf43197243d1f4c75565",
+//     "branch": "aa51ab286ed85e37f039cf43197243d1f4c75565"
+//   },
+//   "owner": {
+//     "name": "cloudcome",
+//     "avatar": "https://github.com/cloudcome.png",
+//     "link": "https://github.com/cloudcome"
+//   },
+//   "deprecated": false,
+//   "homepage": null,
+//   "license": null,
+//   "keywords": [
+//     "po",
+//     "co",
+//     "coify",
+//     "promise",
+//     "promiseify",
+//     "es6",
+//     "generator",
+//     "koa",
+//     "koajs",
+//     "cloudcome",
+//     "ydr.me"
+//   ],
+//   "modified": 1554660858251,
+//   "types": {
+//     "ts": false
+//   },
+//   "objectID": "po",
