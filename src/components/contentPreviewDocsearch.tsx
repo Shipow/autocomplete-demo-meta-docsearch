@@ -379,6 +379,38 @@ export function NPMContentPreview({ content }) {
   );
 }
 
+export function HNContentPreview({ content }) {
+  return (
+    <section class="animate__animated animate__fadeIn animate__faster">
+      <div className="m-3 p-3 shadow rounded overflow-hidden">
+        <div class="text-center text-lg">{content.title}</div>
+        <div class="mt-2 text-gray-600 text-sm">{content.author}</div>
+      </div>
+    </section>
+  );
+}
+
+//   "created_at": "2021-01-26T23:53:45.000Z",
+//   "title": "Agent fired from literary agency for using Parler and Gab",
+//   "url": "https://www.newsweek.com/agent-fired-literary-agency-using-parler-gab-1564687",
+//   "author": "DeusExMachina",
+//   "points": 230,
+//   "story_text": null,
+//   "comment_text": null,
+//   "num_comments": 254,
+//   "story_id": null,
+//   "story_title": null,
+//   "story_url": null,
+//   "parent_id": null,
+//   "created_at_i": 1611705225,
+//   "_tags": [
+//     "story",
+//     "author_DeusExMachina",
+//     "story_25922486",
+//     "front_page"
+//   ],
+//   "objectID": "25922486",
+
 //   "name": "po",
 //   "downloadsLast30Days": 51,
 //   "humanDownloadsLast30Days": "51",

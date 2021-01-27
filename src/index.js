@@ -20,6 +20,7 @@ import {
   ContentPreviewDocsearch,
   MDNContentPreview,
   NPMContentPreview,
+  HNContentPreview,
   DocsearchRecordContentPreview
 } from "./components/contentPreviewDocsearch";
 
@@ -42,6 +43,12 @@ function createRef(initialValue) {
     current: initialValue
   };
 }
+
+// hn
+const hnSearchClient = algoliasearch(
+  "UJ5WYC0L7X",
+  "8ece23f8eb07cd25d40262a1764599b1"
+);
 
 // npm
 const npmSearchClient = algoliasearch(
@@ -437,6 +444,13 @@ const aaDemo = autocomplete({
           sourceType: "keyword",
           onSelect: ({ item }) => {
             switch (item.action) {
+              case "searchHackerNews":
+                setContext({ index: "HN" });
+                setTag("HN");
+                setQuery("");
+                setIsOpen(true);
+                refresh();
+                break;
               case "searchNPM":
                 setContext({ index: "npm-search" });
                 setTag("NPM");
@@ -579,6 +593,12 @@ const aaDemo = autocomplete({
                 action: "searchNPM",
                 keyword: ["npm"],
                 icon: "fab fa-npm"
+              },
+              {
+                label: "Search Hacker News",
+                action: "searchHackerNews",
+                keyword: ["hn", "news"],
+                icon: "fab fa-hacker-news"
               },
               {
                 label: "Search Font-Awesome",
@@ -1034,7 +1054,54 @@ const aaDemo = autocomplete({
             },
             item({ item }) {
               return hitLayoutSmart(item, {
-                main: escapeHtml(item.name)
+                main: item.name
+              });
+            }
+          }
+        }
+      ];
+    } else if (state.context.index === "HN") {
+      return [
+        {
+          // ----------------
+          // Source: Hacker News
+          // ----------------
+          slugName: "HackerNews",
+          onHighlight({ item }) {
+            activeItemRef.current = item;
+            setTimeout(() => {
+              const preview = document.querySelector("#autocomplete-preview");
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+              render(<HNContentPreview content={item} />, preview, section);
+            }, 100);
+          },
+          getItemInputValue: () => "",
+          getItems({ query }) {
+            return getAlgoliaHits({
+              searchClient: hnSearchClient,
+              queries: [
+                {
+                  indexName: "Item_production_ordered",
+                  query,
+                  params: {
+                    hitsPerPage: 12
+                  }
+                }
+              ]
+            });
+          },
+          templates: {
+            header() {
+              return `
+              <span>Hacker News</span>
+              <div class="aa-SourceHeaderLine"></div>
+            `;
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.title
               });
             }
           }
