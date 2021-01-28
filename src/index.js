@@ -444,6 +444,13 @@ const aaDemo = autocomplete({
           sourceType: "keyword",
           onSelect: ({ item }) => {
             switch (item.action) {
+              case "searchYahooFinance":
+                setContext({ index: "Stonks" });
+                setTag("Stonks");
+                setQuery("");
+                setIsOpen(true);
+                refresh();
+                break;
               case "searchHackerNews":
                 setContext({ index: "HN" });
                 setTag("HN");
@@ -552,6 +559,12 @@ const aaDemo = autocomplete({
           },
           getItems({ query }) {
             return [
+              {
+                label: "Yahoo Finance",
+                action: "searchYahooFinance",
+                keyword: ["stonks"],
+                icon: "fas fa-chart-line"
+              },
               {
                 label: "Search Algolia Docs",
                 action: "searchAlgoliaDocs",
@@ -1102,6 +1115,149 @@ const aaDemo = autocomplete({
             item({ item }) {
               return hitLayoutSmart(item, {
                 main: item.title
+              });
+            }
+          }
+        }
+      ];
+    } else if (state.context.index === "HN") {
+      return [
+        {
+          // ----------------
+          // Source: Hacker News
+          // ----------------
+          slugName: "HackerNews",
+          onHighlight({ item }) {
+            activeItemRef.current = item;
+            setTimeout(() => {
+              const preview = document.querySelector("#autocomplete-preview");
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+              render(<HNContentPreview content={item} />, preview, section);
+            }, 100);
+          },
+          getItemInputValue: () => "",
+          getItems({ query }) {
+            return getAlgoliaHits({
+              searchClient: hnSearchClient,
+              queries: [
+                {
+                  indexName: "Item_production_ordered",
+                  query,
+                  params: {
+                    hitsPerPage: 12
+                  }
+                }
+              ]
+            });
+          },
+          templates: {
+            header() {
+              return `
+              <span>Hacker News</span>
+              <div class="aa-SourceHeaderLine"></div>
+            `;
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.title
+              });
+            }
+          }
+        }
+      ];
+    } else if (state.context.index === "HN") {
+      return [
+        {
+          // ----------------
+          // Source: Hacker News
+          // ----------------
+          slugName: "HackerNews",
+          onHighlight({ item }) {
+            activeItemRef.current = item;
+            setTimeout(() => {
+              const preview = document.querySelector("#autocomplete-preview");
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+              render(<HNContentPreview content={item} />, preview, section);
+            }, 100);
+          },
+          getItemInputValue: () => "",
+          getItems({ query }) {
+            return getAlgoliaHits({
+              searchClient: hnSearchClient,
+              queries: [
+                {
+                  indexName: "Item_production_ordered",
+                  query,
+                  params: {
+                    hitsPerPage: 12
+                  }
+                }
+              ]
+            });
+          },
+          templates: {
+            header() {
+              return `
+              <span>Hacker News</span>
+              <div class="aa-SourceHeaderLine"></div>
+            `;
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.title
+              });
+            }
+          }
+        }
+      ];
+    } else if (state.context.index === "Stonks") {
+      return [
+        {
+          // ----------------
+          // Source: Yahoo Finance
+          // ----------------
+          slugName: "YahooFinance",
+          getItemInputValue: () => "",
+          getItems({ query }) {
+            return fetch(
+              `https://apidojo-yahoo-finance-v1.p.rapidapi.com/auto-complete?q=${
+                query || "tesl"
+              }&region=US`,
+              {
+                method: "GET",
+                headers: {
+                  "x-rapidapi-key":
+                    "4cff447292msh8a5dcb18c862932p119b1ejsnd262e0bfcb4c",
+                  "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com"
+                }
+              }
+            )
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                return data.quotes;
+              })
+
+              .catch((err) => {
+                console.error(err);
+              });
+          },
+          templates: {
+            header() {
+              return `
+              <span>Yahoo Finance</span>
+              <div class="aa-SourceHeaderLine"></div>
+            `;
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.shortname,
+                extra: item.symbol
               });
             }
           }
