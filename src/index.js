@@ -110,6 +110,68 @@ const githubSearchClient = algoliasearch(
 
 const searchClientRef = createRef(initialSearchClient);
 
+// answers algolia docs
+const acctDetails = {
+  appId: "B1G2GM9NG0",
+  apiKey: "56184c0a739f3a6c6a00b6d8473c3a8f",
+  indexName: "documentation_production"
+};
+
+function callNluEngine(query, callback) {
+  const data = qaParams(query);
+  const URL = `https://${acctDetails.appId}-2.algolia.net/1/answers/${acctDetails.indexName}/prediction`;
+
+  fetch(URL, {
+    method: "POST",
+    headers: {
+      "X-Algolia-Application-Id": acctDetails.appId,
+      "X-Algolia-API-Key": acctDetails.apiKey
+    },
+    body: JSON.stringify(data)
+  })
+    .then((response) => response.json())
+    .then((res) => callback(res.hits))
+    .catch(console.error);
+}
+
+function qaParams(query) {
+  return {
+    query: query,
+    attributesForPrediction: ["page_title", "title", "description"],
+    queryLanguages: ["en"],
+    threshold: 0,
+    nbHits: 1,
+    params: {
+      typoTolerance: "min",
+      highlightPreTag: "<mark>",
+      highlightPostTag: "</mark>"
+    }
+  };
+}
+
+function debounce(fn, time) {
+  var timerId = undefined;
+  return function () {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+      args[_i] = arguments[_i];
+    }
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    timerId = setTimeout(function () {
+      return fn.apply(void 0, args);
+    }, time);
+  };
+}
+
+const debounceGetAnswers = debounce(callNluEngine, 400);
+
+const answersRef = {
+  current: []
+};
+
+// todo: move to fetch
 function makeRequest(method, url) {
   return new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest();
@@ -402,6 +464,16 @@ const aaDemo = autocomplete({
     };
   },
   onStateChange({ prevState, state }) {
+    if (
+      state.context.index === "algoliaAnswers" &&
+      prevState.query !== state.query
+    ) {
+      debounceGetAnswers(state.query, (answers) => {
+        answersRef.current = answers;
+        aaDemo.refresh();
+        aaDemo.setIsOpen(true);
+      });
+    }
     lastStateRef.current = state;
     if (prevState.context.index !== state.context.index) {
       if (state.context.index === null) {
@@ -444,6 +516,13 @@ const aaDemo = autocomplete({
           sourceType: "keyword",
           onSelect: ({ item }) => {
             switch (item.action) {
+              case "searchAlgoliaAnswersDocs":
+                setContext({ index: "algoliaAnswers" });
+                setTag("Ask");
+                setQuery("");
+                setIsOpen(true);
+                refresh();
+                break;
               case "searchYahooFinance":
                 setContext({ index: "Stonks" });
                 setTag("Stonks");
@@ -559,6 +638,12 @@ const aaDemo = autocomplete({
           },
           getItems({ query }) {
             return [
+              {
+                label: "Algolia Answers",
+                action: "searchAlgoliaAnswersDocs",
+                keyword: ["ask", "anwsers"],
+                icon: "fas fa-question"
+              },
               {
                 label: "Yahoo Finance",
                 action: "searchYahooFinance",
@@ -944,6 +1029,31 @@ const aaDemo = autocomplete({
           }
         }
       ];
+    } else if (state.context.index === "algoliaAnswers") {
+      return [
+        {
+          // ----------------
+          // Source: Algolia Answers
+          // ----------------
+          slugName: "Answers",
+          onSelect: ({ item }) => {
+            setContext({ icon: false });
+          },
+          getItems() {
+            return answersRef.current;
+          },
+          templates: {
+            header({ items }) {
+              return headerLayout({ items, sourceTitle: "Algolia Answers" });
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.title
+              });
+            }
+          }
+        }
+      ];
     } else if (state.context.index === "mdn") {
       return [
         // {
@@ -1068,100 +1178,6 @@ const aaDemo = autocomplete({
             item({ item }) {
               return hitLayoutSmart(item, {
                 main: item.name
-              });
-            }
-          }
-        }
-      ];
-    } else if (state.context.index === "HN") {
-      return [
-        {
-          // ----------------
-          // Source: Hacker News
-          // ----------------
-          slugName: "HackerNews",
-          onHighlight({ item }) {
-            activeItemRef.current = item;
-            setTimeout(() => {
-              const preview = document.querySelector("#autocomplete-preview");
-              const section = document.querySelector(
-                "#autocomplete-preview > section"
-              );
-              render(<HNContentPreview content={item} />, preview, section);
-            }, 100);
-          },
-          getItemInputValue: () => "",
-          getItems({ query }) {
-            return getAlgoliaHits({
-              searchClient: hnSearchClient,
-              queries: [
-                {
-                  indexName: "Item_production_ordered",
-                  query,
-                  params: {
-                    hitsPerPage: 12
-                  }
-                }
-              ]
-            });
-          },
-          templates: {
-            header() {
-              return `
-              <span>Hacker News</span>
-              <div class="aa-SourceHeaderLine"></div>
-            `;
-            },
-            item({ item }) {
-              return hitLayoutSmart(item, {
-                main: item.title
-              });
-            }
-          }
-        }
-      ];
-    } else if (state.context.index === "HN") {
-      return [
-        {
-          // ----------------
-          // Source: Hacker News
-          // ----------------
-          slugName: "HackerNews",
-          onHighlight({ item }) {
-            activeItemRef.current = item;
-            setTimeout(() => {
-              const preview = document.querySelector("#autocomplete-preview");
-              const section = document.querySelector(
-                "#autocomplete-preview > section"
-              );
-              render(<HNContentPreview content={item} />, preview, section);
-            }, 100);
-          },
-          getItemInputValue: () => "",
-          getItems({ query }) {
-            return getAlgoliaHits({
-              searchClient: hnSearchClient,
-              queries: [
-                {
-                  indexName: "Item_production_ordered",
-                  query,
-                  params: {
-                    hitsPerPage: 12
-                  }
-                }
-              ]
-            });
-          },
-          templates: {
-            header() {
-              return `
-              <span>Hacker News</span>
-              <div class="aa-SourceHeaderLine"></div>
-            `;
-            },
-            item({ item }) {
-              return hitLayoutSmart(item, {
-                main: item.title
               });
             }
           }
