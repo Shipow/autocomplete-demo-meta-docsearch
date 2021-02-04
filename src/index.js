@@ -516,6 +516,13 @@ const aaDemo = autocomplete({
           sourceType: "keyword",
           onSelect: ({ item }) => {
             switch (item.action) {
+              case "searchGOG":
+                setContext({ index: "GOG" });
+                setTag("Games");
+                setQuery("");
+                setIsOpen(true);
+                refresh();
+                break;
               case "searchAlgoliaAnswersDocs":
                 setContext({ index: "algoliaAnswers" });
                 setTag("Ask");
@@ -639,6 +646,12 @@ const aaDemo = autocomplete({
           getItems({ query }) {
             return [
               {
+                label: "Search games on GOG.com",
+                action: "searchGOG",
+                keyword: ["games"],
+                icon: "fas fa-gamepad"
+              },
+              {
                 label: "Algolia Answers",
                 action: "searchAlgoliaAnswersDocs",
                 keyword: ["ask", "anwsers"],
@@ -647,7 +660,7 @@ const aaDemo = autocomplete({
               {
                 label: "Yahoo Finance",
                 action: "searchYahooFinance",
-                keyword: ["stonks"],
+                keyword: ["stonks", "$$$"],
                 icon: "fas fa-chart-line"
               },
               {
@@ -1274,6 +1287,53 @@ const aaDemo = autocomplete({
               return hitLayoutSmart(item, {
                 main: item.shortname,
                 extra: item.symbol
+              });
+            }
+          }
+        }
+      ];
+    } else if (state.context.index === "GOG") {
+      return [
+        {
+          // ----------------
+          // Source: GOG
+          // ----------------
+          slugName: "GOG",
+          getItemInputValue: () => "",
+          getItems({ query }) {
+            return fetch(
+              `https://aa-red.herokuapp.com/gog?mediaType=game&search=${
+                query || ""
+              }`,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json"
+                }
+              }
+            )
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                return data.products;
+              })
+
+              .catch((err) => {
+                console.error(err);
+              });
+          },
+          templates: {
+            header() {
+              return `
+              <span>Video Games</span>
+              <div class="aa-SourceHeaderLine"></div>
+            `;
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.title,
+                extra: item.publisher
               });
             }
           }
