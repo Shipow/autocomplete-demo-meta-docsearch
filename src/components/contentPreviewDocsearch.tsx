@@ -390,6 +390,46 @@ export function HNContentPreview({ content }) {
   );
 }
 
+export function GamesContentPreview({ content }) {
+  return (
+    <section class="animate__animated animate__fadeIn animate__faster">
+      <div className="m-3 shadow rounded relative">
+        <div className="h-36 bg-gray-200 w-100 overflow-hidden">
+          <img
+            src={
+              content.screenshots &&
+              content.screenshots[0] &&
+              content.screenshots[0].url &&
+              content.screenshots[0].url.replace(
+                "/t_thumb",
+                "/t_thumb_widescreen_large"
+              )
+            }
+            alt=""
+          />
+        </div>
+        <img
+          className="absolute left-3 rounded shadow"
+          style={{ bottom: "-30px" }}
+          width={110}
+          src={
+            content.cover &&
+            content.cover.url &&
+            content.cover.url.replace("/t_thumb", "/t_cover_big")
+          }
+          alt=""
+        />
+      </div>
+      <div className="mt-4 p-6">
+        <a className="text-gray-600 text-sm" href={content.url}>
+          <div className="text-lg">{content.name}</div>
+          <div className="mt-2 text-gray-600 text-sm">{content.summary}</div>
+        </a>
+      </div>
+    </section>
+  );
+}
+
 //   "created_at": "2021-01-26T23:53:45.000Z",
 //   "title": "Agent fired from literary agency for using Parler and Gab",
 //   "url": "https://www.newsweek.com/agent-fired-literary-agency-using-parler-gab-1564687",

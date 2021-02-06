@@ -16,6 +16,7 @@ import { AlgoliaDocsHitTemplate } from "./components/algoliaDocsLayout.tsx";
 // preview - made with preact + tailwind
 import {
   ContentPreview,
+  GamesContentPreview,
   ContentPreviewGithub,
   ContentPreviewDocsearch,
   MDNContentPreview,
@@ -516,8 +517,8 @@ const aaDemo = autocomplete({
           sourceType: "keyword",
           onSelect: ({ item }) => {
             switch (item.action) {
-              case "searchGOG":
-                setContext({ index: "GOG" });
+              case "searchGames":
+                setContext({ index: "Games" });
                 setTag("Games");
                 setQuery("");
                 setIsOpen(true);
@@ -646,8 +647,8 @@ const aaDemo = autocomplete({
           getItems({ query }) {
             return [
               {
-                label: "Search games on GOG.com",
-                action: "searchGOG",
+                label: "Search Games",
+                action: "searchGames",
                 keyword: ["games"],
                 icon: "fas fa-gamepad"
               },
@@ -1292,19 +1293,27 @@ const aaDemo = autocomplete({
           }
         }
       ];
-    } else if (state.context.index === "GOG") {
+    } else if (state.context.index === "Games") {
       return [
         {
           // ----------------
-          // Source: GOG
+          // Source: Games (IGDB proxy)
           // ----------------
-          slugName: "GOG",
+          slugName: "Games",
           getItemInputValue: () => "",
+          onHighlight({ item }) {
+            activeItemRef.current = item;
+            setTimeout(() => {
+              const preview = document.querySelector("#autocomplete-preview");
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+              render(<GamesContentPreview content={item} />, preview, section);
+            }, 100);
+          },
           getItems({ query }) {
             return fetch(
-              `https://aa-red.herokuapp.com/gog?mediaType=game&search=${
-                query || ""
-              }`,
+              `https://aa-red.herokuapp.com/games?query=${query || ""}`,
               {
                 method: "GET",
                 headers: {
@@ -1316,7 +1325,7 @@ const aaDemo = autocomplete({
                 return response.json();
               })
               .then((data) => {
-                return data.products;
+                return data;
               })
 
               .catch((err) => {
@@ -1332,8 +1341,7 @@ const aaDemo = autocomplete({
             },
             item({ item }) {
               return hitLayoutSmart(item, {
-                main: item.title,
-                extra: item.publisher
+                main: item.name
               });
             }
           }
