@@ -201,7 +201,7 @@ function hitLayoutSmart(item, { main, extra, icon, url, description }) {
   // todo: add highlighting with better utils
   // todo: reverse with flex direction + css var?
   // todo: inline + dual compo?
-  const imageExt = /\.svg|\.ico|\.png|data:image/g;
+  const imageExt = /\.svg|\.ico|\.png|\.jpg|data:image/g;
   // support material design and font awesome icons
   const iconSet = /^fa|mdi/g;
 
@@ -1070,40 +1070,40 @@ const aaDemo = autocomplete({
       ];
     } else if (state.context.index === "mdn") {
       return [
-        // {
-        //   // ----------------
-        //   // Filters: Mdn tags
-        //   // ----------------
-        //   slugName: "mdnTags",
-        //   onSelect: ({ item }) => {
-        //     setContext({ mdnTag: item.value });
-        //     setTag(item.value);
-        //     setIsOpen(true);
-        //     refresh();
-        //   },
-        //   getItemInputValue: () => "",
-        //   getItems({ query }) {
-        //     return mdnSearchClient
-        //       .initIndex("MDN")
-        //       .searchForFacetValues("tags", query, { maxFacetHits: 5 })
-        //       .then(({ facetHits }) => {
-        //         return facetHits.filter((item) => {
-        //           return !state.context.mdnTag;
-        //         });
-        //       });
-        //   },
-        //   templates: {
-        //     header({ items }) {
-        //       return headerLayout({ items, sourceTitle: "MDN Tags" });
-        //     },
-        //     item({ item }) {
-        //       return hitLayoutSmart(item, {
-        //         main: item.value,
-        //         extra: item.count
-        //       });
-        //     }
-        //   }
-        // },
+        {
+          // ----------------
+          // Filters: Mdn tags
+          // ----------------
+          slugName: "mdnTags",
+          onSelect: ({ item }) => {
+            setContext({ mdnTag: item.value });
+            setTag(item.value);
+            setIsOpen(true);
+            refresh();
+          },
+          getItemInputValue: () => "",
+          getItems({ query }) {
+            return mdnSearchClient
+              .initIndex("MDN")
+              .searchForFacetValues("tags", query, { maxFacetHits: 5 })
+              .then(({ facetHits }) => {
+                return facetHits.filter((item) => {
+                  return !state.context.mdnTag;
+                });
+              });
+          },
+          templates: {
+            header({ items }) {
+              return headerLayout({ items, sourceTitle: "MDN Tags" });
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.value,
+                extra: item.count
+              });
+            }
+          }
+        },
         {
           // ----------------
           // Source: Mozilla Developer Network
@@ -1341,7 +1341,9 @@ const aaDemo = autocomplete({
             },
             item({ item }) {
               return hitLayoutSmart(item, {
-                main: item.name
+                main: item.name,
+                icon: (item.cover && item.cover.url) || "fas fa-desktop",
+                extra: item.first_release_date
               });
             }
           }

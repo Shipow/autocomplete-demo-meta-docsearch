@@ -422,7 +422,10 @@ export function GamesContentPreview({ content }) {
       </div>
       <div className="mt-4 p-6">
         <a className="text-gray-600 text-sm" href={content.url}>
-          <div className="text-lg">{content.name}</div>
+          <div className="text-lg">
+            {content.name} -{" "}
+            {new Date(content.first_release_date).getFullYear()}
+          </div>
           <div className="mt-2 text-gray-600 text-sm">{content.summary}</div>
         </a>
       </div>
