@@ -197,11 +197,11 @@ function makeRequest(method, url) {
   });
 }
 
-function hitLayoutSmart(item, { main, extra, icon, url, description }) {
+function hitLayoutSmart(item, { main, extra, icon, url, description, wrap }) {
   // todo: add highlighting with better utils
   // todo: reverse with flex direction + css var?
   // todo: inline + dual compo?
-  const imageExt = /\.svg|\.ico|\.png|\.jpg|data:image/g;
+  const imageExt = /\.svg|\.ico|\.png|\.jpg|\.jpeg|data:image/g;
   // support material design and font awesome icons
   const iconSet = /^fa|mdi/g;
 
@@ -213,11 +213,16 @@ function hitLayoutSmart(item, { main, extra, icon, url, description }) {
 
   return `${!!url ? '<a class="aa-ItemLink" href="{url}">' : ""}
       ${icon ? '<div class="aa-ItemSourceIcon">' + icon + "</div>" : ""}
-      <div class="aa-ItemContent">
+      <div class="aa-ItemContent ${!!wrap ? "aa-ItemContent--dual" : ""}">
         <span class="aa-ItemContentTitle">${main}</span>
         ${
           typeof extra === "string"
             ? `<span class="aa-ItemContentSubtitle">${extra}</span>`
+            : ""
+        }
+        ${
+          typeof extra === "number"
+            ? `<span class="aa-ItemContentSubtitle"><span class="aa-ItemContentTag">${extra}</span></span>`
             : ""
         }
         ${
@@ -1343,7 +1348,8 @@ const aaDemo = autocomplete({
               return hitLayoutSmart(item, {
                 main: item.name,
                 icon: (item.cover && item.cover.url) || "fas fa-desktop",
-                extra: item.first_release_date
+                extra: item.genres && item.genres[0].name,
+                wrap: true
               });
             }
           }
