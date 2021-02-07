@@ -17,6 +17,8 @@ import { AlgoliaDocsHitTemplate } from "./components/algoliaDocsLayout.tsx";
 import {
   ContentPreview,
   GamesContentPreview,
+  YahooFinanceContentPreview,
+  MoviesContentPreview,
   ContentPreviewGithub,
   ContentPreviewDocsearch,
   MDNContentPreview,
@@ -522,6 +524,13 @@ const aaDemo = autocomplete({
           sourceType: "keyword",
           onSelect: ({ item }) => {
             switch (item.action) {
+              case "searchMovies":
+                setContext({ index: "Movies" });
+                setTag("Movies");
+                setQuery("");
+                setIsOpen(true);
+                refresh();
+                break;
               case "searchGames":
                 setContext({ index: "Games" });
                 setTag("Games");
@@ -651,6 +660,12 @@ const aaDemo = autocomplete({
           },
           getItems({ query }) {
             return [
+              {
+                label: "Search Movies",
+                action: "searchMovies",
+                keyword: ["movies"],
+                icon: "fas fa-film"
+              },
               {
                 label: "Search Games",
                 action: "searchGames",
@@ -1257,6 +1272,20 @@ const aaDemo = autocomplete({
           // ----------------
           slugName: "YahooFinance",
           getItemInputValue: () => "",
+          onHighlight({ item }) {
+            activeItemRef.current = item;
+            setTimeout(() => {
+              const preview = document.querySelector("#autocomplete-preview");
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+              render(
+                <YahooFinanceContentPreview content={item} />,
+                preview,
+                section
+              );
+            }, 100);
+          },
           getItems({ query }) {
             return fetch(
               `https://apidojo-yahoo-finance-v1.p.rapidapi.com/auto-complete?q=${
@@ -1350,6 +1379,62 @@ const aaDemo = autocomplete({
                 icon: (item.cover && item.cover.url) || "fas fa-desktop",
                 extra: item.genres && item.genres[0].name,
                 wrap: true
+              });
+            }
+          }
+        }
+      ];
+    } else if (state.context.index === "Movies") {
+      return [
+        {
+          // ----------------
+          // Source: Movies - https://imdb-api.com/
+          // ----------------
+          slugName: "Movies",
+          getItemInputValue: () => "",
+          onHighlight({ item }) {
+            activeItemRef.current = item;
+            setTimeout(() => {
+              const preview = document.querySelector("#autocomplete-preview");
+              const section = document.querySelector(
+                "#autocomplete-preview > section"
+              );
+              render(<MoviesContentPreview content={item} />, preview, section);
+            }, 100);
+          },
+          getItems({ query }) {
+            return fetch(
+              `https://aa-red.herokuapp.com/movies?query=${query || ""}`,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json"
+                }
+              }
+            )
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                return data;
+              })
+
+              .catch((err) => {
+                console.error(err);
+              });
+          },
+          templates: {
+            header() {
+              return `
+              <span>Movies IMDB</span>
+              <div class="aa-SourceHeaderLine"></div>
+            `;
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.title,
+                icon: item.image,
+                extra: item.description
               });
             }
           }

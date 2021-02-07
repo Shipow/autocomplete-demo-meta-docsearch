@@ -310,6 +310,14 @@ export function ContentPreviewGithub({ content }) {
   );
 }
 
+export function YahooFinanceContentPreview({ content }) {
+  return (
+    <section class="animate__animated animate__fadeIn animate__faster">
+      <pre class="text-xs">{JSON.stringify(content, null, 2)}</pre>
+    </section>
+  );
+}
+
 export function DocsearchRecordContentPreview({ content }) {
   return (
     <section class="animate__animated animate__fadeIn animate__faster">
@@ -427,6 +435,31 @@ export function GamesContentPreview({ content }) {
             {new Date(content.first_release_date).getFullYear()}
           </div>
           <div className="mt-2 text-gray-600 text-sm">{content.summary}</div>
+        </a>
+      </div>
+    </section>
+  );
+}
+
+export function MoviesContentPreview({ content }) {
+  return (
+    <section class="animate__animated animate__fadeIn animate__faster">
+      <div className="m-3 shadow rounded relative">
+        <div className="h-36 bg-gray-200 w-100 overflow-hidden"></div>
+        <img
+          className="absolute left-3 rounded shadow"
+          style={{ bottom: "-30px" }}
+          width={110}
+          src={content.image}
+          alt=""
+        />
+      </div>
+      <div className="mt-4 p-6">
+        <a className="text-gray-600 text-sm" href="#">
+          <div className="text-lg">{content.title}</div>
+          <div className="mt-2 text-gray-600 text-sm">
+            {content.description}
+          </div>
         </a>
       </div>
     </section>
